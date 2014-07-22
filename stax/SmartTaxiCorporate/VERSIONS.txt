@@ -1,0 +1,25 @@
+SmartTaxi Corp
+Android version: 4.0.3 APIs
+Dependencies: App compat v7, library project
+
+SmartTaxiDriver
+Android version: 4.1.2
+Dependencies: v7 compat, google-play-services, library, map
+
+support-v7-compat
+Android version: 4.0.3
+Dependencies: none
+
+
+google-play-services_lib
+Android version: 4.0.3 (IsLibrary = true)
+Dependencies: none
+
+
+library
+Android version: 4.0.3 (IsLibrary = true)
+Dependencies: google-play-services
+
+Map
+Android version: 4.0.3 (IsLibrary = true)
+Dependencies: google-play-services

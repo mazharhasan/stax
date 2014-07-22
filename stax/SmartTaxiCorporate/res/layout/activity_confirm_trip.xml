@@ -1,0 +1,221 @@
+<RelativeLayout
+    android:layout_width="match_parent"
+	android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:scrollbars="vertical"
+
+	tools:context=".ConfirmTripActivity">
+
+	<ScrollView
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_above="@+id/btnConfirmTrip"
+	    android:layout_alignParentLeft="true"
+	    android:layout_alignParentTop="true" >
+
+	   <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="0dp"
+	        android:layout_marginTop="0dp"
+	        android:orientation="vertical" >
+	
+	        
+			<com.smart.taxi.components.CFTextView 
+			    android:id="@+id/headerLabelTripDetails"
+			    android:layout_width="fill_parent"
+			    android:layout_height="wrap_content"
+			    style="@style/FormHeader"
+			    android:text="@string/label_confirm_trip"/>
+			<LinearLayout 
+			    android:layout_width="match_parent"
+			    android:layout_height="wrap_content"
+			    android:layout_marginTop="10dp"
+			    android:paddingLeft="16dp"
+			    android:paddingRight="16dp">
+				
+			    <com.smart.taxi.components.CFTextView
+				    android:id="@+id/lblCTPickupAddress"
+				    android:layout_width="wrap_content"
+				    android:layout_height="wrap_content"
+				    android:textSize="14sp"
+				    android:text="@string/label_pickup_address" />
+			    
+			    <com.smart.taxi.components.CFTextView
+				    android:id="@+id/lblCTPickUpAddressValue"
+				    android:paddingLeft="16dp"
+				    android:singleLine="false"
+				    android:textSize="14sp"
+				    android:layout_width="fill_parent"
+				    android:layout_height="wrap_content"
+				    android:text="@string/label_dummy_address" />
+			</LinearLayout>
+			<LinearLayout
+			    android:layout_width="match_parent" 
+			    android:layout_height="wrap_content"
+			    android:layout_marginTop="10dp"
+			    android:paddingLeft="16dp"
+			    android:paddingRight="16dp">
+				
+			    <com.smart.taxi.components.CFTextView
+				    android:id="@+id/lblCTNumPeople"
+				    android:layout_width="0dp"
+				    android:layout_height="wrap_content"
+				    android:layout_weight="1"
+				    android:textSize="14sp"
+				    android:text="@string/label_no_of_people" />
+			    <com.smart.taxi.components.CFTextView
+					android:id="@+id/lblCTNumBags"
+				    android:layout_width="0dp"
+				    android:layout_height="wrap_content"
+				    android:layout_weight="1"
+				    android:textSize="14sp"
+				    android:text="@string/label_no_of_bags" />
+			    
+			    <com.smart.taxi.components.CFTextView
+				    android:id="@+id/lblCTNumChildSeats"
+				    android:layout_width="0dp"
+				    android:layout_height="wrap_content"
+				    android:layout_weight="1"
+				    android:textSize="14sp"
+				    android:text="@string/label_child_seats" />
+			</LinearLayout>
+			<LinearLayout 
+			    android:layout_width="fill_parent"
+			    android:layout_height="wrap_content"
+			    android:layout_marginTop="10dp"
+			    android:paddingLeft="16dp"
+			    android:layout_marginLeft="24dp"
+			    android:paddingRight="16dp">
+				
+			    <com.smart.taxi.components.CFTextView
+				    android:id="@+id/lblCTPeopleCount"
+				    android:singleLine="false"
+				    android:layout_width="0dp"
+				    android:layout_weight="1"
+				    android:textSize="16sp"
+				    android:layout_height="wrap_content"
+				    android:layout_marginLeft="20dp"
+				    android:text="1" />
+			    
+			    <com.smart.taxi.components.CFTextView
+				    android:id="@+id/lblCTBagsCount"
+				    android:singleLine="false"
+				    android:layout_width="0dp"
+				    android:layout_height="wrap_content"
+				    android:layout_weight="1"
+				    android:textSize="16sp"
+				    android:layout_marginLeft="26dp"
+				    android:text="0" />
+			    <com.smart.taxi.components.CFTextView
+				    android:id="@+id/lblCTChildSeatCount"
+				    android:singleLine="false"
+				    android:layout_width="0dp"
+				    android:layout_height="wrap_content"
+				    android:layout_weight="1"
+				    android:textSize="16sp"
+				    android:layout_marginLeft="30dp"
+				    android:text="0" />
+			</LinearLayout>
+			
+			<com.smart.taxi.components.CFTextView 
+			    android:id="@+id/headerLabelDriverDetails"
+			    android:layout_width="fill_parent"
+			    android:layout_height="wrap_content"
+			    style="@style/FormHeader"
+			    android:layout_marginTop="22dp"
+			    android:text="@string/label_drivers_details"/>
+			<LinearLayout 
+			    android:layout_width="match_parent"
+			    android:layout_height="wrap_content"
+			    android:layout_marginTop="10dp"
+			    android:paddingLeft="16dp"
+			    android:paddingRight="16dp">
+				
+			    <ImageView
+		                    android:id="@+id/editProfilePicturePreview"
+		                    android:layout_width="wrap_content"
+		                    android:layout_height="wrap_content"
+		                    android:layout_gravity="center"
+		                    android:src="@drawable/logo" />
+			    
+			    <LinearLayout 
+			        android:orientation="vertical"
+			        android:layout_width="fill_parent"
+			        android:layout_height="wrap_content"
+			        android:paddingLeft="16dp"
+			        android:paddingTop="16dp">
+			        <com.smart.taxi.components.CFTextView
+					    android:id="@+id/lblCTDriverName"
+					    android:gravity="center_vertical"
+					    android:layout_width="fill_parent"
+					    android:layout_height="wrap_content"
+					    android:textSize="18sp"
+					    android:textStyle="bold"
+					    android:text="Muhammad Waqas"/>
+			    
+				    <com.smart.taxi.components.CFTextView
+					    android:id="@+id/lblCTDriverCompany"
+					    android:singleLine="false"
+					    android:gravity="center_vertical"
+					    android:layout_width="fill_parent"
+					    android:layout_height="wrap_content"
+					    android:textSize="14sp"
+					    android:text="Imperial Taxi, Toronto" />
+			    </LinearLayout>
+			</LinearLayout>
+			<LinearLayout 
+			    android:layout_width="match_parent"
+			    android:layout_height="wrap_content"
+			    android:layout_marginTop="10dp"
+			    android:paddingLeft="16dp"
+			    android:paddingRight="16dp">
+				
+			    <com.smart.taxi.components.CFTextView
+				    android:id="@+id/lblCTETA"
+				    android:layout_width="wrap_content"
+				    android:layout_height="wrap_content"
+				    android:textSize="14sp"
+				    android:paddingLeft="30dp"
+				    android:layout_marginLeft="20dp"
+				    android:text="@string/label_eta" />
+			    
+			    <com.smart.taxi.components.CFTextView
+				    android:id="@+id/lblCTETAValue"
+				    android:paddingLeft="16dp"
+				    android:singleLine="false"
+				    android:layout_width="fill_parent"
+				    android:layout_height="wrap_content"
+				    android:textSize="14sp"
+				    android:text="@string/label_dummy_date" />
+			</LinearLayout>
+			<com.smart.taxi.components.CFTextView 
+			    android:id="@+id/headerLabelMiscDetails"
+			    android:layout_width="fill_parent"
+			    android:layout_height="wrap_content"
+			    style="@style/FormHeader"
+			    android:layout_marginTop="22dp"
+			    android:text="@string/label_misc_details"/>
+			<com.smart.taxi.components.CFTextView
+			    android:id="@+id/lblCTMiscDetails"
+			    android:padding="16dp"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:textSize="14sp"
+			    android:text="@string/label_fluffy_text" />
+	
+    	</LinearLayout>
+	</ScrollView>
+    
+
+    <Button
+        android:id="@+id/btnConfirmTrip"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:text="@string/label_confirm_trip_request" />
+    
+</RelativeLayout>
+

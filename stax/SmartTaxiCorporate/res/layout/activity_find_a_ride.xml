@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".FindARideFragment">
+    
+  
+    <RelativeLayout
+        android:id="@+id/findARideContents"
+        android:orientation="vertical"
+        android:layout_width="match_parent" 
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        >
+        <fragment 
+	          class="com.google.android.gms.maps.MapFragment"
+	          android:id="@+id/mapFindARide"
+			  android:layout_width="match_parent"
+			  android:layout_height="fill_parent"
+	          />
+
+		<ImageButton
+		    android:id="@+id/btnResetFindRide"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_alignParentRight="true"
+		    android:layout_alignParentTop="true"
+		    android:layout_marginRight="3dp"
+		    style="?android:attr/buttonBarButtonStyle" 
+		    android:layout_marginTop="62dp"
+		    android:src="@drawable/refresh" />
+
+		<LinearLayout
+		    android:id="@+id/lvFooterCurrentAddress"
+		    style="?android:attr/buttonBarStyle"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:background="#99000000"
+		    android:orientation="horizontal"
+		    android:layout_alignBottom="@id/mapFindARide"
+		     >
+
+	        <ImageButton 
+	            android:id="@+id/imgSearchIcon"
+	            android:src="@drawable/side_menu_search_icon"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_gravity="left|center_vertical"
+	            style="?android:attr/buttonBarButtonStyle" 
+	            android:paddingLeft="10dp"
+	            android:paddingRight="10dp"
+	            />
+	        <com.smart.taxi.components.CFTextView
+	            android:id="@+id/txtAddressFindRide"
+	            android:layout_height="wrap_content"
+	            android:layout_width="0dp"
+	            android:layout_weight="1"
+	            style="@style/WhiteLabel"
+	            android:padding="10dp"
+	            android:layout_gravity="center_vertical"
+	            android:textSize="16sp"
+	            android:text=""/>
+	        <ImageButton
+	            android:id="@+id/imgBtnChangeAddress"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_gravity="right|center_vertical"
+	            android:src="@drawable/arrow_icon"
+	            style="?android:attr/buttonBarButtonStyle" 
+	            android:paddingLeft="10dp"
+	            android:paddingRight="10dp"
+	            />
+		</LinearLayout>
+    </RelativeLayout>
+    
+	<LinearLayout 
+	    android:orientation="horizontal"
+	    android:id="@+id/lvFooterFindARide"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_gravity="bottom"
+	    android:background="#7d7d7d7d"
+	    style="?android:attr/buttonBarStyle"
+	    >
+	    <Button 
+	        android:id="@+id/btnFindARide"
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"
+	        
+	        style="?android:attr/buttonBarButtonStyle"
+	        android:text="@string/btn_label_pickmeup"/>
+	    <Button
+	        android:id="@+id/btnOptionsFindRide"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/label_btn_options"
+	        style="?android:attr/buttonBarButtonStyle"
+	        android:paddingLeft="16dp"
+	        android:paddingRight="16dp" 
+	        />
+	</LinearLayout>
+</LinearLayout>

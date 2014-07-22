@@ -1,0 +1,129 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_yellow"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    android:scrollbars="vertical"
+    tools:context=".EditProfileFragment" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:id="@+id/editProfilePicturePreview"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_gravity="center"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/logo" />
+
+                <com.smart.taxi.components.CFTextView
+                    android:id="@+id/labelEditProfilePicture"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textSize="18sp"
+                    android:textColor="#4d4d4d"
+                    android:text="@string/label_change_photo" />
+
+                <com.smart.taxi.components.CFTextView
+                    android:id="@+id/labelFirstName"
+                    android:layout_marginTop="30dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/FormLabels"
+                    android:text="@string/label_first_name" />
+
+                 <com.smart.taxi.components.CFEditText
+                    android:id="@+id/txtFirstName"
+                    android:singleLine="true"
+                    android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        style="@style/FormTextInputStyle"
+			        android:inputType="textCapWords"
+			        android:ems="10" >
+		
+		        	<requestFocus />
+	    		</com.smart.taxi.components.CFEditText>
+	    		<com.smart.taxi.components.CFTextView
+                    android:id="@+id/labelLastName"
+                    android:layout_marginTop="18dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/FormLabels"
+                    android:text="@string/label_last_name" />
+
+                 <com.smart.taxi.components.CFEditText
+                    android:id="@+id/txtLastName"
+                    android:singleLine="true"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:inputType="textCapWords"
+			        style="@style/FormTextInputStyle"
+			        android:ems="10" >
+	    		</com.smart.taxi.components.CFEditText>
+	    		
+	    		<RadioGroup
+	    		    android:layout_marginTop="20dp"
+	    		    android:layout_width="fill_parent"
+				    android:layout_height="wrap_content"
+				    android:orientation="horizontal">
+		        	<com.smart.taxi.components.CFTextView
+                    android:id="@+id/labelGender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginRight="20dp"
+                    style="@style/FormLabels"
+                    android:text="@string/label_gender" />
+	    		    
+				    <RadioButton android:id="@+id/radioYes"
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+				        android:layout_weight="1"
+				        android:paddingTop="5dp"
+				        android:textColor="#4d4d4d"
+				        android:text="Male"/>
+				    <RadioButton android:id="@+id/radioNo"
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+				        android:layout_weight="1"
+				        android:text="Female"
+				        android:textColor="#4d4d4d"
+				        android:paddingTop="5dp"/>
+				</RadioGroup>
+
+	    		<com.smart.taxi.components.CFTextView
+                    android:id="@+id/labelPhone"
+                    android:layout_marginTop="18dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/FormLabels"
+                    android:text="@string/label_phone" />
+
+                 <com.smart.taxi.components.CFEditText
+                    android:id="@+id/txtPhone"
+                    android:singleLine="true"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        style="@style/FormTextInputStyle"
+			        android:inputType="phone"
+			        android:ems="10" >
+	    		</com.smart.taxi.components.CFEditText>
+	    		<Button
+			        android:id="@+id/btnUpdateProfile"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:layout_marginBottom="16dp"
+			        style="@style/ButtonsTheme"
+			        android:layout_marginTop="16dp"
+			        android:text="@string/button_update_profile" />
+            </LinearLayout>
+</ScrollView>

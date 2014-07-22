@@ -1,0 +1,60 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/action_login"
+        android:orderInCategory="100"
+        android:showAsAction="collapseActionView"
+        android:title="@string/title_activity_splash"/>
+    <item
+        android:id="@+id/action_forgetPassword"
+        android:orderInCategory="100"
+        android:showAsAction="collapseActionView"
+        android:title="@string/title_activity_forget_password"/>
+    <item
+        android:id="@+id/action_showProfileView"
+        android:orderInCategory="100"
+        android:showAsAction="collapseActionView"
+        android:title="@string/title_activity_profile_view"/>
+    
+    <item
+        android:id="@+id/action_editProfileView"
+        android:orderInCategory="100"
+        android:showAsAction="collapseActionView"
+        android:title="@string/title_activity_edit_profile"/>
+    <item
+        android:id="@+id/action_editPassword"
+        android:orderInCategory="100"
+        android:showAsAction="collapseActionView"
+        android:title="@string/title_activity_change_password"/>
+    <item
+        android:id="@+id/action_editTip"
+        android:orderInCategory="100"
+        android:showAsAction="collapseActionView"
+        android:title="@string/title_activity_change_tip"/>
+    <item
+        android:id="@+id/action_confirmTrip"
+        android:orderInCategory="100"
+        android:showAsAction="collapseActionView"
+        android:title="@string/title_activity_confirm_trip"/>
+    <item
+        android:id="@+id/action_customPickup"
+        android:showAsAction="collapseActionView"
+        android:title="@string/title_activity_pickup_location"/>
+    <item
+        android:id="@+id/action_QR_scanner"
+        android:showAsAction="never"
+        android:title="@string/title_activity_qrscanner"/>
+    <item
+        android:id="@+id/action_MapLoader"
+        android:showAsAction="never"
+        android:title="@string/title_activity_maploader"/>
+    <item
+        android:id="@+id/action_trip_history"
+        android:showAsAction="never"
+        android:title="@string/title_activity_trip_history"/>
+    <item android:id="@+id/action_websearch"
+          android:icon="@drawable/action_search"
+          android:title="@string/action_websearch"
+          android:showAsAction="never" />
+
+</menu>
