@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="#00FFFFFF"
+    android:orientation="horizontal"
+    android:weightSum="2" >
+
+    <Button
+        android:id="@+id/btnSubtract"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="0.5"
+        android:background="#4d4d4d"
+        android:text="-"
+        android:textColor="#ffffff" />
+
+    <TextView
+        android:id="@+id/txtValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_weight="1"
+        android:background="#4d4d4d"
+        android:padding="7dp"
+        android:text="0"
+        android:textColor="#ffffff"
+        android:textSize="22sp" />
+
+    <Button
+        android:id="@+id/btnAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="0.5"
+        android:background="#4d4d4d"
+        android:text="+"
+        android:textColor="#ffffff" />
+
+</LinearLayout>

@@ -1,0 +1,183 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    -->
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+
+    <style name="popup_theme" parent="@android:style/Theme.Translucent.NoTitleBar">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackground">@null</item>
+    </style>
+
+    <style name="Theme.Transparent" parent="Theme.AppCompat.Light">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+    <!--
+    <style name="Theme.Transparent" parent="@android:style/Theme.Black">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+    -->
+
+    <style name="cancel_beep_endjourney_ButtonStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/text_size</item>
+        <item name="android:shadowColor">#000000</item>
+        <item name="android:shadowDx">1</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowRadius">2</item>
+    </style>
+
+    <style name="BottomBarTextTemplate">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:textSize">16sp</item>
+        <!-- <item name="android:fontFamily">sans-serif</item> -->
+
+    </style>
+
+    <style name="DynamicFieldText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@android:color/darker_gray</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/text_size</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:shadowColor">#000000</item>
+        <item name="android:shadowDx">1</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowRadius">2</item>
+    </style>
+
+    <!-- Text Style For All -->
+    <style name="TextStyleForKey" parent="@android:style/TextAppearance">
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/text_size</item>
+        <item name="android:textColor">#818181</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="TextStyleForVlaue" parent="@android:style/TextAppearance">
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/text_size</item>
+        <item name="android:textColor">#646464</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="TextStylePlain" parent="@android:style/TextAppearance">
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/text_size</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="TextStyleForButton" parent="@android:style/TextAppearance">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/text_size</item>
+        <item name="android:typeface">sans</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="TextStyleForButtonColored" parent="@android:style/TextAppearance">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">@dimen/text_size</item>
+        <item name="android:typeface">sans</item>
+        <item name="android:textColor">#646464</item>
+    </style>
+
+    <style name="ButtonStyle" parent="@android:style/Widget.Button">
+        <item name="android:gravity">center_vertical|center_horizontal</item>
+        <item name="android:textColor">#FF000000</item>
+        <item name="android:shadowColor">#FFFFFFFF</item>
+        <item name="android:shadowDx">0</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowRadius">0.2</item>
+        <item name="android:textSize">@dimen/text_size</item>
+        <item name="android:typeface">sans</item>
+        <item name="android:focusable">true</item>
+        <item name="android:clickable">true</item>
+    </style>
+
+    <style name="Animations" />
+
+    <!-- PopDownMenu -->
+    <style name="Animations.PopDownMenu" />
+
+    <style name="Animations.PopDownMenu.Left">
+        <item name="@android:windowEnterAnimation">@anim/grow_from_topleft_to_bottomright</item>
+        <item name="@android:windowExitAnimation">@anim/shrink_from_bottomright_to_topleft</item>
+    </style>
+
+    <style name="Animations.PopDownMenu.Right">
+        <item name="@android:windowEnterAnimation">@anim/grow_from_topright_to_bottomleft</item>
+        <item name="@android:windowExitAnimation">@anim/shrink_from_bottomleft_to_topright</item>
+    </style>
+
+    <style name="Animations.PopDownMenu.Center">
+        <item name="@android:windowEnterAnimation">@anim/grow_from_top</item>
+        <item name="@android:windowExitAnimation">@anim/shrink_from_bottom</item>
+    </style>
+
+    <!-- PopUpMenu -->
+    <style name="Animations.PopUpMenu" />
+
+    <style name="Animations.PopUpMenu.Left">
+        <item name="@android:windowEnterAnimation">@anim/grow_from_bottomleft_to_topright</item>
+        <item name="@android:windowExitAnimation">@anim/shrink_from_topright_to_bottomleft</item>
+    </style>
+
+    <style name="Animations.PopUpMenu.Right">
+        <item name="@android:windowEnterAnimation">@anim/grow_from_bottomright_to_topleft</item>
+        <item name="@android:windowExitAnimation">@anim/shrink_from_topleft_to_bottomright</item>
+    </style>
+
+    <style name="Animations.PopUpMenu.Center">
+        <item name="@android:windowEnterAnimation">@anim/grow_from_bottom</item>
+        <item name="@android:windowExitAnimation">@anim/shrink_from_top</item>
+    </style>
+    
+    
+    <!-- Journey Request Theme -->
+     <style name="JourneyRequestTheme" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowTitleStyle">@null</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+</resources>

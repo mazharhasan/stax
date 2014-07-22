@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <drawable name="white">#FFFFFF</drawable>
+    <drawable name="black">#000000</drawable>
+    <color name="dialog_background">#88000000</color>
+    <color name="dialog_middle_container">#D3D3D3</color>
+    <color name="dialog_text_color">#6A6A6A</color>
+     <color name="grey_light">#f2f2f2</color>
+      <color  name="transparent" >#0000</color>
+</resources>

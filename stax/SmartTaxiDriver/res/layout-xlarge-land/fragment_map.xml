@@ -1,0 +1,96 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <include
+        android:id="@+id/location_layout"
+        layout="@layout/locate" />
+
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/mapView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/layoutBottomButtons"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="-10dp"
+         />
+
+    <LinearLayout
+        android:id="@+id/layoutBottomButtons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#ffd600"
+
+        android:orientation="horizontal"
+        
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+       >
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:orientation="vertical" 
+            android:layout_gravity="center_vertical"
+            >
+
+            <com.smarttaxi.driver.components.CFTextView
+                android:textSize="18sp"
+                android:id="@+id/txtTaxiStatus"
+                android:gravity="center_vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Cab Available" 
+                />
+            <com.smarttaxi.driver.components.CFTextView
+                android:id="@+id/txtDriverLocation"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Loading location..." 
+                android:ellipsize="end"
+                android:textSize="16sp"/>
+        </LinearLayout>
+
+        <Button
+            android:layout_gravity="center_vertical"
+            android:id="@+id/btnOptions"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="#4d4d4d"
+            android:text="Options"
+            android:textColor="#ffffff" />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@drawable/map_user_icon"
+        android:visibility="gone" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <com.smarttaxi.driver.components.ProgressWheelLoader
+        android:id="@+id/progressWheelLoader"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:background="#bb000000"
+        android:visibility="gone" />
+
+</RelativeLayout>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"    
+    xmlns:smarttaxi="http://schemas.android.com/apk/res/com.smarttaxi.driver"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+		<com.smarttaxi.driver.components.ProgressWheel
+            android:id="@+id/progressWheel"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_centerInParent="true"
+            smarttaxi:barColor="#FFD801"
+            smarttaxi:barLength="60dp"
+            smarttaxi:barWidth="15dp"
+            smarttaxi:rimColor="#bb5e5e5e"
+            smarttaxi:rimWidth="15dp"
+            smarttaxi:text="Authenticating..."
+            smarttaxi:textColor="#FFFFFF"
+            smarttaxi:textSize="20sp" 
+            />
+</RelativeLayout>

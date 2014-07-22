@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:background="#00FFFFFF"
+        android:layout_gravity="center"
+        android:text="Please Verify Your Code"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp" />
+    
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:background="#00FFFFFF"
+        android:layout_gravity="center"
+        android:text="We have send a verification code in your email. Please Provide"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp" />    
+
+    <EditText 
+	    android:id="@+id/editTxtVerificationCode"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_marginLeft="20dp"
+	    android:layout_marginRight="20dp"
+	    android:layout_marginTop="10dp"
+	    android:textSize="20sp"
+	    android:background="#FFFFFF"
+	    android:padding="10dp"	    
+	    android:hint="Verify Code"
+	    android:inputType="textNoSuggestions"
+		android:layout_gravity="center"/>
+    
+    <Button 
+	    android:id="@+id/btnVerify"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+		android:layout_marginLeft="20dp"
+	    android:layout_marginRight="20dp"
+	    android:layout_marginTop="20dp"
+	    android:background="#4d4d4d"
+	    android:textColor="#ffffff"
+	    android:padding="10dp"
+	    android:text="Verify"
+	    android:layout_gravity="center"/>
+    
+
+</LinearLayout>

@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dip"
+        android:background="#f0f0f0"
+        android:orientation="vertical" >
+
+        <com.smarttaxi.driver.custom.design.CircularImageView
+            android:id="@+id/imgPhoto"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center_horizontal"
+            android:scaleType="fitCenter"
+            android:src="@drawable/taxi_symbol" >
+        </com.smarttaxi.driver.custom.design.CircularImageView>
+        
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp" >
+            
+            
+           <com.smarttaxi.driver.components.CFTextView
+               android:layout_width="wrap_content"
+               android:layout_height="match_parent"
+               android:gravity="center_vertical"
+               android:layout_marginRight="5dp"
+               android:textSize="20sp"
+               android:text="First Name"/>
+            
+            <com.smarttaxi.driver.components.CFEditText
+	            android:id="@+id/editTxtFirstName"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:layout_gravity="center"
+	           
+	            android:background="#FFFFFF"
+	            android:hint="First Name"
+	            android:inputType="textNoSuggestions"
+	            android:padding="10dp"
+	            android:textSize="20sp" />
+            
+        </LinearLayout>
+
+        
+         <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp" >
+            
+            
+           <com.smarttaxi.driver.components.CFTextView
+               android:layout_width="wrap_content"
+               android:layout_height="match_parent"
+               android:gravity="center_vertical"
+               android:layout_marginRight="5dp"
+               android:textSize="20sp"
+               android:text="Last Name"/>
+        
+
+        <com.smarttaxi.driver.components.CFEditText
+            android:id="@+id/editTxtLastName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="#FFFFFF"
+            android:hint="Last Name"
+            android:inputType="textNoSuggestions"
+            android:padding="10dp"
+            android:textSize="20sp" />
+        
+        
+        </LinearLayout>
+        
+          <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp" >
+            
+            
+           <com.smarttaxi.driver.components.CFTextView
+               android:layout_width="wrap_content"
+               android:layout_height="match_parent"
+               android:gravity="center_vertical"
+               android:layout_marginRight="5dp"
+               android:textSize="20sp"
+               android:text="Gender"/>
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <RadioButton
+                android:id="@+id/radioMale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Male"
+                android:textSize="20sp" />
+
+            <RadioButton
+                android:id="@+id/radioFemale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Female"
+                android:textSize="20sp" />
+        </RadioGroup>
+
+        </LinearLayout>
+        
+          
+           <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp" >
+            
+            
+           <com.smarttaxi.driver.components.CFTextView
+               android:layout_width="wrap_content"
+               android:layout_height="match_parent"
+               android:gravity="center_vertical"
+               android:layout_marginRight="5dp"
+               android:textSize="20sp"
+               android:text="Contact #"/>
+          
+        <com.smarttaxi.driver.components.CFEditText
+            android:id="@+id/editTxtPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="#FFFFFF"
+            android:hint="Contact number"
+            android:inputType="textNoSuggestions|phone"
+            android:padding="10dp"
+            android:textSize="20sp" />
+    </LinearLayout>
+        
+           
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp" >
+            
+            
+           <com.smarttaxi.driver.components.CFTextView
+               android:layout_width="wrap_content"
+               android:layout_height="match_parent"
+               android:gravity="center_vertical"
+               android:layout_marginRight="5dp"
+               android:textSize="20sp"
+               android:text="License #"/>
+        <com.smarttaxi.driver.components.CFEditText
+            android:id="@+id/editLicenseCode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:background="#FFFFFF"
+            android:hint="License Number"
+            android:inputType="textNoSuggestions|textEmailAddress"
+            android:padding="10dp"
+            android:textSize="20sp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/bttSave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:background="#4d4d4d"
+            android:padding="10dp"
+            android:text="Save"
+            android:textColor="#ffffff" />
+    </LinearLayout>
+
+</ScrollView>

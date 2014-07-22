@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_container_current"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical" >
+
+   	<ViewStub
+    android:id="@+id/stub_import"
+    android:inflatedId="@+id/panel_import"
+    android:layout="@layout/activity_drawer_current_trip"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="bottom" />
+  
+    <ImageView
+        android:id="@+id/journey_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:src="@drawable/journey_icon" />
+
+    <com.smarttaxi.driver.components.CFTextView
+        android:id="@+id/journeystatus"
+        style="@style/TextStyleForVlaue"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/journey_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" 
+        android:gravity="center"
+        android:text="Getting driver current journey..."
+        />
+
+</RelativeLayout>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/cab_available_container"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:padding="10dp" >
+
+    <FrameLayout
+        android:id="@+id/header2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dip"
+        android:background="@drawable/quickaction_top_frame" />
+
+    <ImageView
+        android:id="@+id/arrow_up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/quickaction_arrow_up" />
+
+    <LinearLayout
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/header2"
+        android:background="@android:color/white"
+        android:fadingEdgeLength="0dip"
+        android:paddingLeft="1dip"
+        android:scrollbars="none" >
+
+        <RelativeLayout
+            android:id="@+id/tracks"
+            android:layout_width="fill_parent"
+            android:layout_height="250dp"
+            android:background="@android:color/white"
+            android:padding="10dp"
+            android:paddingBottom="4dip" >
+
+          <Button
+                android:id="@+id/btn_cancel"
+                android:layout_alignParentRight="true"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_alignParentTop="true"
+                android:gravity="right"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/btn_cancel"/>
+            
+         
+            <Button
+                android:id="@+id/check_in"
+                style="@style/TextStyleForButton"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_below="@id/btn_cancel"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/button_post_check_in"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="Post check in"
+                android:textStyle="normal" />
+            
+              
+                
+               
+               
+
+            <Button
+                android:id="@+id/passenger_on_board"
+                style="@style/TextStyleForButton"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_below="@id/check_in"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/button_passenger_on_board"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="Passenger on board"
+                android:textStyle="normal" />
+
+            <ToggleButton
+                android:id="@+id/cab_availability_toggle"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignRight="@id/passenger_on_board"
+                android:layout_alignTop="@+id/cab_availabe_or_not"
+                android:autoText="false"
+                android:background="@drawable/switch_cap_availability"
+                android:checked="true" />
+
+            <com.smarttaxi.driver.components.CFTextView
+                android:id="@+id/cab_availabe_or_not"
+                style="@style/TextStyleForVlaue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_toLeftOf="@id/cab_availability_toggle"
+                android:layout_marginRight="5dp"
+                android:padding="5dp"
+                android:text="Cab status"
+                android:textColor="@android:color/darker_gray" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/scroll"
+        android:background="@drawable/quickaction_bottom_frame" />
+
+    <ImageView
+        android:id="@+id/arrow_down"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/footer"
+        android:layout_marginTop="-1dip"
+        android:src="@drawable/quickaction_arrow_down" />
+
+</RelativeLayout>

@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="bottom"
+    android:background="#D8000000"
+    android:orientation="vertical"
+    android:clickable="true" 
+     >
+
+    <com.smarttaxi.driver.custom.design.TransparentPanel
+        android:id="@+id/popup_window"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:gravity="left"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom"
+            android:background="#D8000000"
+            android:orientation="vertical"
+            android:weightSum="2.5" >
+
+            <!-- my layout here -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:layout_weight="1.1"
+                android:background="#939393"
+                android:orientation="vertical"
+                android:padding="10dp" >
+
+                <RelativeLayout
+                    android:id="@+id/pickup_point"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical" >
+
+                    <TextView
+                        android:id="@+id/pickpoint"
+                        style="@style/TextStyleForVlaue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:gravity="center"
+                        android:text="Pick Up Point :" />
+
+                    <TextView
+                        android:id="@+id/pickText"
+                        style="@style/TextStylePlain"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/pickpoint"
+                        android:ellipsize="end"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="10dp"
+                        android:scrollHorizontally="false"
+                        android:text="Shadman Town"
+                        android:textColor="@android:color/white" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/pickup_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical" >
+
+                    <TextView
+                        android:id="@+id/pickupTime"
+                        style="@style/TextStyleForVlaue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:gravity="center"
+                        android:text="Pick Up Time :" />
+
+                    <TextView
+                        android:id="@+id/pickTime"
+                        style="@style/TextStylePlain"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/pickupTime"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="10dp"
+                        android:text="11/28/2013 9:30 AM"
+                        android:textColor="@android:color/white" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/optional_message"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight=".25" >
+
+                    <TextView
+                        android:id="@+id/optioanlMsg"
+                        style="@style/TextStyleForVlaue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:text="Optional Message :" />
+
+                    <ScrollView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_toRightOf="@id/optioanlMsg"
+                        android:paddingLeft="10dp" >
+
+                        <TextView
+                            android:id="@+id/opnMsg"
+                            style="@style/TextStylePlain"
+                            android:gravity="left"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:autoText="true"
+                            android:text="Hello this the test"
+                            android:textColor="@android:color/white" />
+                    </ScrollView>
+                </RelativeLayout>
+
+                <!-- lowest bar 3 -->
+
+                <RelativeLayout
+                    android:id="@+id/pass_bag_seats"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical" >
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:id="@+id/passenger_key"
+                            style="@style/TextStyleForVlaue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Passenger :" />
+
+                        <TextView
+                            android:id="@+id/passenger_value"
+                            style="@style/TextStylePlain"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="2dp"
+                            android:text="3"
+                            android:textColor="@android:color/white" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_centerVertical="true"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:id="@+id/bags_key"
+                            style="@style/TextStyleForVlaue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:paddingLeft="2dp"
+                            android:text="Bags :" />
+
+                        <TextView
+                            android:id="@+id/bags_value"
+                            style="@style/TextStylePlain"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:paddingLeft="2dp"
+                            android:text="1"
+                            android:textColor="@android:color/white" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:id="@+id/childseats_key"
+                            style="@style/TextStyleForVlaue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Child :" >
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/childseats_value"
+                            style="@style/TextStylePlain"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textColor="@android:color/white" />
+                    </LinearLayout>
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.3"
+                android:orientation="vertical" >
+
+                <TextView
+                    style="@style/TextStylePlain"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#D8000000"
+                    android:gravity="center_vertical"
+                    android:minHeight="50dp"
+                    android:paddingLeft="10dp"
+                    android:text="Driver Information"
+                    android:textColor="@android:color/white" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.1"
+                android:background="#a8a8a8"
+                android:orientation="horizontal"
+                android:padding="10dp" >
+
+                <com.smarttaxi.driver.custom.design.CircularImageView
+                    android:id="@+id/circular_image_view"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:layout_centerVertical="true"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/image_holder" >
+                </com.smarttaxi.driver.custom.design.CircularImageView>
+
+                <TextView
+                    android:id="@+id/user_name"
+                    style="@style/TextStylePlain"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="10dp"
+                    android:text="Umair Ahmed." />
+
+                <!-- <include layout="@layout/bottom_bar" /> -->
+
+            </LinearLayout>
+        </LinearLayout>
+    </com.smarttaxi.driver.custom.design.TransparentPanel>
+
+</LinearLayout>

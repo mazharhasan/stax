@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.smarttaxi.driver"
+    android:versionCode="15"
+    android:versionName="1.5.7" >
+
+    <uses-sdk
+        android:minSdkVersion="11"
+        android:targetSdkVersion="19" />
+
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:resizeable="true"
+        android:smallScreens="true"
+        android:xlargeScreens="true" />
+
+    <compatible-screens>
+
+        <!-- all normal size screens >
+        <screen
+            android:screenDensity="ldpi"
+            android:screenSize="normal" />
+        <screen
+            android:screenDensity="mdpi"
+            android:screenSize="normal" />
+        <screen
+            android:screenDensity="hdpi"
+            android:screenSize="normal" />
+        <screen
+            android:screenDensity="xhdpi"
+            android:screenSize="normal" /-->
+
+        <!-- large screens -->
+        <screen
+            android:screenDensity="ldpi"
+            android:screenSize="large" />
+        <screen
+            android:screenDensity="mdpi"
+            android:screenSize="large" />
+        <screen
+            android:screenDensity="hdpi"
+            android:screenSize="large" />
+        <screen
+            android:screenDensity="xhdpi"
+            android:screenSize="large" />
+        
+
+        <!-- xlarge screens -->
+        <screen
+            android:screenDensity="ldpi"
+            android:screenSize="xlarge" />
+        <screen
+            android:screenDensity="mdpi"
+            android:screenSize="xlarge" />
+        <screen
+            android:screenDensity="hdpi"
+            android:screenSize="xlarge" />
+        <screen
+            android:screenDensity="xhdpi"
+            android:screenSize="xlarge"/>
+    </compatible-screens>
+
+    <permission
+        android:name="com.smarttaxi.driver.permission.MAPS_RECEIVE"
+        android:protectionLevel="signature" />
+
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
+
+    <uses-permission android:name="com.smarttaxi.driver.permission.MAPS_RECEIVE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
+    
+    <permission
+        android:name="com.smarttaxi.driver.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="com.smarttaxi.driver.permission.C2D_MESSAGE" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-feature
+        android:name="android.hardware.vibrator"
+        android:required="false" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <uses-library android:name="com.google.android.maps" />
+
+        <receiver
+            android:name="com.smarttaxi.driver.fragments.FindARideFragment$MapLocationChangedReciever"
+            android:enabled="true" />
+
+        <activity
+            android:name="com.smarttaxi.driver.activities.ImageSplashActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.smarttaxi.driver.activities.Splash"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape" >
+            <intent-filter>
+                <action android:name="com.smarttaxi.driver.activities.first.activity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.smarttaxi.driver.activities.DrawerCurrentTripActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape" >
+            <intent-filter>
+                <action android:name="com.smarttaxi.driver.activities.drawer.current.trip" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <!--
+        <activity
+            android:name="com.smarttaxi.driver.activities.JourneyDetailActivity"
+            android:label="@string/app_name"
+           
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" >   
+            <intent-filter>
+                <action android:name="journey.detail.activity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        -->
+
+        <activity
+            android:name="com.smarttaxi.driver.activities.JourneyDetailActivity"
+            android:label="@string/app_name"
+            android:parentActivityName="com.smarttaxi.driver.activities.MainActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.smarttaxi.driver.activities.MainActivity" />
+
+            <intent-filter>
+                <action android:name="journey.detail.activity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <!--
+        <activity
+            android:name="com.smarttaxi.driver.activities.EndJourneyActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" >
+
+            <intent-filter>
+                <action android:name="end.journey.activity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        -->
+        <activity
+            android:name="com.smarttaxi.driver.activities.EndJourneyActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" >
+            <intent-filter>
+                <action android:name="end.journey.activity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.smarttaxi.driver.activities.ForgotPassword"
+            android:label="@string/password"
+            android:screenOrientation="portrait" >
+		</activity>
+        <activity
+            android:name="com.smarttaxi.driver.activities.MainActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTop"
+            android:noHistory="false"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" >
+
+            <!-- <action android:name="android.intent.action.DIAL" /> -->
+        </activity>
+        <activity
+            android:name="com.smarttaxi.driver.custom.design.PassengerRequestFlipperView"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+            <intent-filter>
+                <action android:name="pessenger.request.flipper.view.activity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <!-- activity
+            android:name="com.smarttaxi.driver.activities.VerifyCodeActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" >
+        </activity-->
+        <activity
+            android:name="com.smarttaxi.driver.activities.SignupActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" >
+        </activity>
+        <activity
+            android:name="com.smarttaxi.driver.activities.LoginActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" >
+        </activity>
+        <!-- activity
+            android:name="com.smarttaxi.driver.activities.PickUpLocationActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" >
+        </activity-->
+        <!--activity
+            android:name="com.smarttaxi.driver.activities.CabsListActivity"
+            android:label="Select A Cab"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" >
+        </activity-->
+        <!--activity
+            android:name="com.smarttaxi.driver.activities.TripDetailsActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" >
+        </activity-->
+        <activity
+            android:name="com.smarttaxi.driver.activities.ChangePassword"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" >
+        </activity>
+        <activity
+            android:name="com.smarttaxi.driver.activities.Profile"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" >
+        </activity>
+        <activity
+            android:name="com.smarttaxi.driver.activities.Cabs"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" >
+        </activity>
+        <activity
+            android:name="com.smarttaxi.driver.activities.CabForm"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" >
+        </activity>
+        <activity
+            android:name="com.smarttaxi.driver.activities.EarningList"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" >
+        </activity>
+        <activity
+            android:name="com.smarttaxi.driver.activities.BroadCastActivity"
+            android:theme="@style/Theme.Transparent" >
+        </activity>
+
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyDRUkCWU3N5eJMCsPgF449UxqteldQlMEI" />
+
+        <service android:name="com.smarttaxi.driver.activities.ServiceLocation" />
+
+        <!--activity
+            android:name="com.smarttaxi.driver.Journy"
+            android:label="@string/title_activity_journy" >
+        </activity-->
+        <!-- google maps permission -->
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyCUQ9SgDAAATImBmszyRpgZVMDhNjfzB4Q" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+    
+        <receiver
+            android:name="com.smarttaxi.driver.activities.GCMMyBoadcastReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+
+                <!-- Receives the actual messages. -->
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <!-- Receives the registration id. -->
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+
+                <!-- this must be same as your main package name as it will be use as Appid -->
+                <category android:name="com.smarttaxi.driver" />
+            </intent-filter>
+        </receiver>
+        
+        <receiver 
+             android:name="com.smarttaxi.driver.activities.GpsLocationReceiver" 
+            android:label="GpsChange">
+            <intent-filter>
+                <action android:name="android.location.PROVIDERS_CHANGED" />
+            </intent-filter>
+        </receiver>
+        
+        <receiver
+            android:name="com.smarttaxi.driver.activities.ConnectionChangeListener"
+            android:label="NetworkConnection" >
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+       
+
+        <service android:name="com.smarttaxi.driver.gcm.GCMIntentService" />
+        <service android:name="com.smarttaxi.driver.activities.ServiceLocation" />
+    </application>
+
+</manifest>

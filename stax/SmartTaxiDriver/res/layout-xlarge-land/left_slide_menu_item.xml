@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@drawable/side_menu_selected_bg"
+    android:layout_height="wrap_content" >
+
+    <ImageView
+        android:id="@+id/imgIcon"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="20dp"
+        android:layout_centerVertical="true" />
+
+    <com.smarttaxi.driver.components.CFTextView
+        android:id="@+id/txtName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+         android:layout_marginLeft="20dp"
+        android:layout_toRightOf="@id/imgIcon"
+        android:text=""
+        android:textColor="#FFFFFF"
+        android:textSize="20sp" />
+
+   
+</RelativeLayout>

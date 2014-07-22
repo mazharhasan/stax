@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/grey_light"
+    android:orientation="vertical" >
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
+
+               <!--  <ImageView
+                    android:id="@+id/imgPhoto"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/taxi_symbol" /> -->
+
+                <com.smarttaxi.driver.custom.design.CircularImageView
+                    android:id="@+id/imgPhoto"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/default_profile_image" >
+                </com.smarttaxi.driver.custom.design.CircularImageView>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/imgPhoto"
+                    android:orientation="vertical"
+                    android:padding="10dp" >
+
+                    <TextView
+                        style="@style/TextStyleForVlaue"
+                        android:id="@+id/txtDriverName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="Driver 1 khan" />
+
+                    <TextView
+                        style="@style/TextStyleForVlaue"
+                        android:id="@+id/txtCabProvider"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="Cab provider: Imperial Taxi" />
+
+                    <TextView
+                        style="@style/TextStyleForVlaue"
+                        android:id="@+id/txtGender"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="Cab provider: Imperial Taxi" />
+
+                    <TextView
+                        style="@style/TextStyleForVlaue"
+                        android:id="@+id/txtLicenseNo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="Cab provider: Imperial Taxi" />
+
+                    <TextView
+                        style="@style/TextStyleForVlaue"
+                        android:id="@+id/txtContactNo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="Cab provider: Imperial Taxi" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <Button
+               
+                android:id="@+id/bttEditProfile"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal|center_vertical"
+                android:layout_marginBottom="10dp"
+                android:text="@string/EditMyProfile" />
+
+            <Button
+                android:id="@+id/bttChangeTaxi"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                 android:gravity="center_horizontal|center_vertical"
+                android:layout_marginBottom="10dp"
+                android:text="@string/ChangeTaxi"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/bttChangePassword"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                 android:gravity="center_horizontal|center_vertical"
+                android:layout_marginBottom="10dp"
+                android:text="@string/ChangeMyPasword" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

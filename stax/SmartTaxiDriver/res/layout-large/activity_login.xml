@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:background="@drawable/bg_yellow">
+    
+    <ImageView 
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:background="@drawable/logo"
+        android:layout_gravity="center"
+        
+        android:layout_marginTop="20dp"/>
+    
+	<com.smarttaxi.driver.components.CFEditText 
+	    android:id="@+id/editTxtUserName"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_marginLeft="20dp"
+	    android:layout_marginRight="20dp"
+	    android:textSize="20sp"
+	    android:textColor="@android:color/black"
+	    android:gravity="left"
+	    android:hint="enter your email"
+	    android:padding="10dp"	    
+	    android:inputType="textNoSuggestions"
+	    android:text=""
+		android:layout_gravity="center"/>
+	
+	<com.smarttaxi.driver.components.CFEditText 
+	    android:id="@+id/editTxtPassword"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+		android:layout_marginLeft="20dp"
+	    android:layout_marginRight="20dp"
+	    android:textSize="20sp"
+	    android:textColor="@android:color/black"
+        android:gravity="left"
+	    android:padding="10dp"
+	    android:hint="enter your password"
+        android:layout_marginTop="2dp"
+	    android:inputType="textNoSuggestions|textPassword"
+	    android:text=""
+		android:layout_gravity="center"/>
+	<Button 
+	    style="@style/TextStylePlain"
+	    android:id="@+id/btnLogIn"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+		android:layout_marginLeft="20dp"
+	    android:layout_marginRight="20dp"
+	    android:background="#4d4d4d"
+	    android:textColor="#ffffff"
+	    android:padding="10dp"
+	    android:layout_marginTop="10dp"
+	    android:text="Log In"
+	    android:layout_gravity="center"/>
+	<Button 
+	    style="@style/TextStylePlain"
+	    android:textColor="@android:color/black"
+	    android:id="@+id/btnSignup"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+		android:layout_marginLeft="20dp"
+	    android:layout_marginRight="20dp"
+	    android:background="#004d4d4d"
+	    
+	    android:padding="5dp"
+	    android:layout_marginTop="10dp"
+	    android:text="Driver Sign Up"
+	    android:layout_gravity="center"/>
+	<com.smarttaxi.driver.components.CFTextView 
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:background="#004d4d4d"
+	    android:padding="5dp"
+	    android:text="or"
+	    android:layout_gravity="center"/>
+	<Button
+	    style="@style/TextStylePlain"
+        android:textColor="@android:color/black" 
+	    android:id="@+id/btnForgotPassword"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+		android:layout_marginLeft="20dp"
+	    android:layout_marginRight="20dp"
+	    android:background="#004d4d4d"
+	    android:padding="5dp"
+	    android:layout_marginTop="2dp"
+	    android:text="Forgot your password?"
+	    android:layout_gravity="center"/>
+	
+</LinearLayout>

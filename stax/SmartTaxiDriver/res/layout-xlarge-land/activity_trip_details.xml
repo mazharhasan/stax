@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/secondary_bar_yellow"
+        android:gravity="left"
+        android:padding="5dp"
+        android:text="TRIP DETAILS"
+        android:textColor="#000000"
+        android:textSize="20sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#00ffffff"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#00ffffff"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:weightSum="3" >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:background="#00ffffff"
+                android:text="Pickup:"
+                android:textColor="#555555"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/txtViewPickupConfirm"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:background="#00ffffff"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text=""
+                android:textColor="#555555"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#00ffffff"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:weightSum="3" >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:background="#00ffffff"
+                android:text="Passengers:"
+                android:textColor="#555555"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/txtViewPassengersConfirm"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:background="#00ffffff"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text=""
+                android:textColor="#555555"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#00ffffff"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:weightSum="3" >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:background="#00ffffff"
+                android:text="Baggage:"
+                android:textColor="#555555"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/txtViewBaggageConfirm"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:background="#00ffffff"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text=""
+                android:textColor="#555555"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#00ffffff"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:weightSum="3" >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:background="#00ffffff"
+                android:text="Child Seats:"
+                android:textColor="#555555"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/txtViewChildSeatsConfirm"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:background="#00ffffff"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text=""
+                android:textColor="#555555"
+                android:textSize="15sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/secondary_bar_yellow"
+        android:gravity="left"
+        android:padding="5dp"
+        android:text="CAB DETAILS"
+        android:textColor="#000000"
+        android:textSize="20sp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="#00ffffff" >
+
+        <ImageView
+            android:id="@+id/imgViewCabDetail"
+            android:layout_width="125dp"
+            android:layout_height="100dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/rounded_imageview_drawable"
+            android:padding="5dp" />
+
+        <TextView
+            android:id="@+id/txtCabNameConfirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/imgViewCabDetail"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/imgViewCabDetail"
+            android:ellipsize="end"
+            android:text="Imperical Taxi"
+            android:textColor="#555555"
+            android:textSize="15sp" />
+
+        <com.smarttaxi.driver.components.RatingComponent
+            android:id="@+id/ratingComponentConfirmCab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/txtCabNameConfirm"
+            android:layout_below="@+id/txtCabNameConfirm"
+            android:layout_marginTop="10dp" />
+
+        <TextView
+            android:id="@+id/txtPickUpTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/imgViewCabDetail"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:ellipsize="end"
+            android:text="PickUp Time"
+            android:textColor="#555555"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/txtViewPickUpTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/txtCabNameConfirm"
+            android:layout_below="@+id/imgViewCabDetail"
+            android:layout_marginTop="10dp"
+            android:ellipsize="end"
+            android:textColor="#555555"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/txtCabType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/txtPickUpTime"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:ellipsize="end"
+            android:text="Cab Type"
+            android:textColor="#555555"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/txtViewCabType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/txtViewPickUpTime"
+            android:layout_below="@+id/txtViewPickUpTime"
+            android:layout_marginTop="10dp"
+            android:ellipsize="end"
+            android:textColor="#555555"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/txtViewPriceConfirm"
+            android:layout_width="120dp"
+            android:layout_height="70dp"
+            android:layout_alignBottom="@+id/txtCabType"
+            android:layout_alignParentRight="true"
+            android:background="#555555"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:text="$31"
+            android:textColor="#ffffff"
+            android:textSize="20sp" />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/secondary_bar_yellow"
+        android:gravity="left"
+        android:padding="5dp"
+        android:text="PAYMENT"
+        android:textColor="#000000"
+        android:textSize="20sp" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:weightSum="3" >
+
+        <RadioButton
+            android:id="@+id/radioCash"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:text="Cash"
+            android:textColor="#555555"
+            android:textSize="19sp" />
+
+        <RadioButton
+            android:id="@+id/radioCard"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:text="Card"
+            android:textColor="#555555"
+            android:textSize="19sp" />
+
+        <RadioButton
+            android:id="@+id/radioPaypal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:text="Paypal"
+            android:textColor="#555555"
+            android:textSize="19sp" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/btnConfirmBooking"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="CONFIRM BOOKING"
+        android:textColor="#d1b831"
+        android:background="#545453"
+        android:padding="10dp"
+        android:textSize="20sp" />
+
+</LinearLayout>

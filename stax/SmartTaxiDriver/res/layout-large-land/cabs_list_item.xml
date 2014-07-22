@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#f0f0f0"
+    android:baselineAligned="false"
+    android:orientation="horizontal"
+    android:weightSum="4" >
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:background="#00ffffff"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="15dp" >
+
+        <ImageView
+            android:id="@+id/imgViewCab"
+            android:layout_width="125dp"
+            android:layout_height="100dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:padding="5dp"
+            android:background="@drawable/rounded_imageview_drawable" />
+
+        <TextView
+            android:id="@+id/txtCabName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/imgViewCab"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/imgViewCab"
+            android:ellipsize="end"
+            android:text="Imperical Taxi"
+            android:textColor="#000000"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/txtCabComment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/txtCabName"
+            android:layout_below="@+id/txtCabName"
+            android:layout_marginTop="3dp"
+            android:ellipsize="end"
+            android:text="Best for Punctuality"
+            android:textColor="#888888"
+            android:textSize="14sp" />
+
+        <com.smarttaxi.driver.components.RatingComponent
+            android:id="@+id/ratingComponentCab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/txtCabComment"
+            android:layout_below="@+id/txtCabComment"
+            android:layout_marginTop="8dp" />
+        
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"        
+        android:layout_weight="1"
+        android:background="#00ffffff" 
+        android:layout_marginBottom="15dp">
+        <TextView
+            android:id="@+id/txtCabTimeDuration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:text="20m"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+        <TextView
+            android:id="@+id/txtCabTimeArrivalDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtCabTimeDuration"
+            android:gravity="center"
+            android:singleLine="false"
+            android:ellipsize="end"
+            android:text="Arrives 18:05\n 24/05"
+            android:textColor="#000000"
+            android:textSize="14sp" />
+    </RelativeLayout>
+
+</LinearLayout>

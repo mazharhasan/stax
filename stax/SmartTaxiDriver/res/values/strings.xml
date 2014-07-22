@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name" translatable="false">Smart Taxi - Driver</string>
+    <string name="action_settings" translatable="false">Settings</string>
+    <string name="drawer_open" translatable="false">Drawer Open</string>
+    <string name="drawer_close" translatable="false">Drawer Close</string>
+    <string name="POST_CHECK_IN" translatable="false">Post Check-In</string>
+    <string name="PASSENGER_ON_BOARD" translatable="false">Passenget on Board</string>
+    <string name="STATUS" translatable="false">status</string>
+    <string name="blank_description" translatable="false">""</string>
+    <string name="dialog_heading_text" translatable="false">Trip Completed</string>
+     <!--string name="dialog_heading_text" translatable="false">Your trip has been completed successfully. Please verify the fare, trip and complete the transaction by entering your corporate pin.</string-->
+
+      
+    
+   <!--  GCM TEST STRINGS -->
+    <string name="error_config" translatable="false">Please set the %1$s constant and recompile the app.</string>
+    <string name="already_registered" translatable="false">Device is already registered on server.</string>
+    <string name="gcm_registered" translatable="false">From GCM: device successfully registered!</string>
+    <string name="gcm_unregistered" translatable="false">From GCM: device successfully unregistered!</string>
+    <string name="gcm_message" translatable="false">From GCM: you got message!</string>
+    <string name="gcm_error" translatable="false">From GCM: error (%1$s).</string>
+    <string name="gcm_recoverable_error" translatable="false">From GCM: recoverable error (%1$s).</string>
+    <string name="gcm_deleted" translatable="false">From GCM: server deleted %1$d pending messages!</string>
+    <string name="server_registering" translatable="false">Trying (attempt %1$d/%2$d) to register device on Demo Server.</string>
+    <string name="server_registered" translatable="false">From Demo Server: successfully added device!</string>
+    <string name="server_unregistered" translatable="false">From Demo Server: successfully removed device!</string>
+    <string name="server_register_error" translatable="false">Could not register device on Demo Server after %1$d attempts.</string>
+    <string name="server_unregister_error" translatable="false">Could not unregister device on Demo Server (%1$s).</string>
+    <string name="options_register" translatable="false">Register</string>
+    <string name="options_unregister" translatable="false">Unregister</string>
+    <string name="options_clear" translatable="false" >Clear</string>
+    <string name="options_exit" translatable="false">Exit</string>
+    
+    <!-- Salik -->
+    <string name="EditMyProfile" translatable="false">Edit My Profile</string>
+    <string name="ChangeTaxi" translatable="false">Change Taxi</string>
+    <string name="NewPassowrd" translatable="false">New Password</string>
+    <string name="OldPassword" translatable="false">Old Password</string>
+    <string name="ConfirmPassword" translatable="false">Confirm Password</string>
+    <string name="Save" translatable="false">Save</string>
+    <string name="ChangeMyPasword" translatable="false">Change My Password</string>
+    <string name="title_activity_journy" translatable="false">Journy</string>
+    <string name="password">Edit Password</string>
+
+</resources>

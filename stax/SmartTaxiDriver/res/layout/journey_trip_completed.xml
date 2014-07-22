@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_con"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="#DBDBDB"
+    android:padding="15dip"
+    android:paddingLeft="25dip"
+    android:paddingRight="25dip"
+    android:paddingTop="25dip" >
+
+    <TextView
+        android:id="@+id/trip_completed"
+        style="@style/TextStyleForVlaue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:gravity="left"
+        android:text="Trip Completed"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tripCompletionText"
+        style="@style/TextStyleForKey"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/trip_completed"
+        android:layout_below="@id/trip_completed"
+        android:layout_marginTop="5dip"
+        android:gravity="left"
+        android:text="Your trip has been completed successfully. Please verify the fare, trip and complete the transaction by entering your corporate pin." />
+
+    <LinearLayout
+        android:id="@+id/fare_tip_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/tripCompletionText"
+        android:layout_below="@id/tripCompletionText"
+        android:orientation="vertical"
+        android:padding="8dip" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/fare_key"
+                style="@style/TextStyleForKey"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:gravity="left"
+                android:text="Fare :" />
+
+            <TextView
+                android:id="@+id/fare_value"
+                style="@style/TextStyleForVlaue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text=""
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/tip_con"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip"
+            android:orientation="horizontal"
+            android:weightSum="2.0" >
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.3"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/tip_key"
+                    style="@style/TextStyleForKey"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:text="Tip :" />
+
+                <TextView
+                    android:id="@+id/tip_text"
+                    style="@style/TextStyleForKey"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:text="automatically calculated"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/tip_value"
+                style="@style/TextStyleForKey"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.7"
+                android:background="@android:color/white"
+                android:gravity="center"
+                android:lines="1"
+                android:hint="enter tip"
+                android:singleLine="true"
+                android:inputType="number"
+                android:text="" >
+            </EditText>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/btns_pin_approve"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="8dip" >
+
+            <EditText
+                android:id="@+id/pin_approve"
+                style="@style/TextStyleForKey"
+                android:layout_width="match_parent"
+                android:layout_height="50dip"
+                android:layout_alignParentTop="true"
+                android:background="@android:color/white"
+                android:gravity="left|center_vertical"
+                
+                android:paddingLeft="8dip"
+                android:password="true"
+                android:hint="your pin here"
+                android:text=""
+                android:lines="1"
+                android:singleLine="true"
+                android:textColor="@android:color/darker_gray" >
+            </EditText>
+
+            <Button
+                android:id="@+id/approve_end_journey"
+                style="@style/TextStyleForButton"
+                android:layout_width="match_parent"
+                android:layout_height="50dip"
+                android:layout_below="@id/pin_approve"
+                android:layout_marginTop="8dip"
+                android:background="@drawable/btn_confirm_end_journey"
+                android:gravity="center"
+                android:text="Approve" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>

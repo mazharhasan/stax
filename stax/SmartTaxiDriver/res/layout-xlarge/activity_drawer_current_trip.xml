@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/mainCon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="#DBDBDB"
+        android:padding="6dp" >
+
+        <LinearLayout
+            android:id="@+id/customer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="15dp"
+            android:weightSum="2.0" >
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.8" >
+
+                <TextView
+                    android:id="@+id/cust"
+                    style="@style/TextStyleForKey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="right"
+                    android:text="Customer :" />
+
+                <ImageView
+                    android:id="@+id/yellow_indicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="5dip"
+                    android:layout_toLeftOf="@id/cust"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/yellow_buggle_icon" >
+                </ImageView>
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/cust_Text"
+                style="@style/TextStyleForVlaue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.2"
+                android:gravity="left"
+                android:paddingLeft="10dp"
+                android:scrollHorizontally="false"
+                android:text="Umair ahmed" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/pickup_point"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/customer"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="15dp"
+            android:weightSum="2.0" >
+
+            <TextView
+                android:id="@+id/pickpoint"
+                style="@style/TextStyleForKey"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.8"
+                android:gravity="right"
+                android:text="Pick Up Point :" />
+
+            <TextView
+                android:id="@+id/pickText"
+                style="@style/TextStyleForVlaue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.2"
+                android:gravity="left"
+                android:paddingLeft="10dp"
+                android:scrollHorizontally="false"
+                android:text="shadman north 12 west @sdskgo  nazimabad" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/booking"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/pickup_point"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="15dp"
+            android:weightSum="2.0" >
+
+            <TextView
+                android:id="@+id/bookingKey"
+                style="@style/TextStyleForKey"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.8"
+                android:gravity="right"
+                android:text="Booking Time :" />
+
+            <TextView
+                android:id="@+id/bookingvalue"
+                style="@style/TextStyleForVlaue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.2"
+                android:gravity="left"
+                android:paddingLeft="10dp"
+                android:scrollHorizontally="false"
+                android:text="Tue 4:30 PM 11/11/2013" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/bottomBarButtons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@id/booking"
+            android:layout_below="@id/booking"
+            android:layout_marginTop="20dip"
+         android:layout_marginRight="10dip"
+            android:orientation="horizontal"
+            android:weightSum="3.0" >
+
+             <Button
+                android:id="@+id/call"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical|left"
+                android:layout_weight="1.0"
+                android:scaleType="centerCrop"
+                android:background="@drawable/drawer_current_trip_call_btn" >
+            </Button>
+
+            <Button
+                android:id="@+id/msg"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_weight="1.0"
+                android:scaleType="centerCrop"
+                android:background="@drawable/drawer_current_trip_message_btn" >
+            </Button>
+
+            <Button
+                android:id="@+id/email"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical|right"
+                android:layout_weight="1.0"
+                android:scaleType="centerCrop"
+                android:background="@drawable/drawer_current_trip_email_btn" >
+            </Button>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="15dp" >
+
+        <RelativeLayout
+            android:id="@+id/buttons"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical" >
+
+            <Button
+                android:id="@+id/textBtn23"
+                style="@style/TextStyleForButton"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="10dip"
+                android:layout_marginRight="10dip"
+                android:background="@drawable/btn_confirm_end_journey"
+                android:gravity="center"
+                android:text="End This Journey" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="5dp"
+            android:weightSum="2.0" >
+
+            <Button
+                android:id="@+id/btn_beep"
+                style="@style/TextStyleForButton"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="4dip"
+                android:layout_marginRight="4dip"
+                android:layout_weight="1.0"
+                android:background="@drawable/accept_request_button"
+                android:gravity="center"
+                android:text="Beep" />
+
+            <Button
+                android:id="@+id/btn_cancell"
+                style="@style/TextStyleForButton"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="4dip"
+                android:layout_marginRight="4dip"
+                android:layout_weight="1.0"
+                android:background="@drawable/reject_request_button"
+                android:gravity="center"
+                android:text="Cancel journey" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

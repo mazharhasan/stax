@@ -1,0 +1,240 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#f0f0f0"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:weightSum="6" >
+
+        <RelativeLayout
+            android:id="@+id/layoutItem"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="5.5"
+            android:background="#757575"
+            android:paddingLeft="4dp" >
+
+            <LinearLayout
+                android:id="@+id/maincom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:background="#757575"
+                android:orientation="vertical"
+                android:paddingTop="5dp" >
+
+                <TextView
+                    android:id="@+id/txtPassengerName"
+                    style="@style/TextStylePlain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ahbab Sami"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold" />
+
+                <com.smarttaxi.driver.components.CFTextView
+                    android:id="@+id/txtCorporate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Amani System"
+                    android:textColor="#FFFFFF" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@id/maincom"
+                android:gravity="right" >
+
+                <ImageView
+                    android:id="@+id/img_airport"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/trip_detail_top_bar_icon"
+                    android:visibility="gone" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|right"
+            android:layout_weight="0.5"
+            android:background="#f0f0f0"
+            android:gravity="right"
+            android:orientation="vertical"
+            android:paddingRight="5dp" >
+
+            <com.smarttaxi.driver.components.CFTextView
+                style="@style/TextStylePlain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fare"
+                android:textColor="#000" />
+
+            <com.smarttaxi.driver.components.CFTextView
+                android:id="@+id/txtFareAmount"
+                style="@style/TextStylePlain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="3dip"
+                android:text="$ 80.00"
+                android:textColor="#000" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#EBEBEB"
+        android:weightSum="7" >
+
+        <com.smarttaxi.driver.components.CFTextView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="1dp"
+            android:layout_weight="1.5"
+            android:adjustViewBounds="true"
+            android:background="#9D9C9A"
+            android:cropToPadding="true"
+            android:gravity="center|center_horizontal"
+            android:text="P"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="5"
+            android:orientation="vertical" >
+
+            <com.smarttaxi.driver.components.CFTextView
+                android:id="@+id/txtPickUpDateTime"
+                style="@style/TextStylePlain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:padding="3dip"
+                android:text="2013-11-29 00:00:24"
+                android:textColor="#000" />
+
+            <com.smarttaxi.driver.components.CFTextView
+                android:id="@+id/txtPassLoc"
+                style="@style/TextStylePlain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
+                android:gravity="left"
+                android:text="Johar Chowrangi Road Karachi 75290"
+                android:textColor="#000" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center_vertical|right"
+            android:layout_weight="0.5"
+            android:background="#f0f0f0"
+            android:gravity="right"
+            android:orientation="vertical" >
+
+            <com.smarttaxi.driver.components.CFTextView
+                style="@style/TextStylePlain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="3dip"
+                android:text="Tip"
+                android:textColor="#000" />
+
+            <com.smarttaxi.driver.components.CFTextView
+                android:id="@+id/txtTipAmount"
+                style="@style/TextStylePlain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="3dp"
+                android:text="$ 62.00"
+                android:textColor="#000" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#EBEBEB"
+        android:weightSum="7" >
+
+        <com.smarttaxi.driver.components.CFTextView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="1dp"
+            android:layout_weight="1.5"
+            android:adjustViewBounds="true"
+            android:background="#9D9C9A"
+            android:cropToPadding="true"
+            android:gravity="center|center_horizontal"
+            android:text="D"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:orientation="vertical" >
+
+            <com.smarttaxi.driver.components.CFTextView
+                android:id="@+id/txtDropToDateTime"
+                style="@style/TextStylePlain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:padding="3dip"
+                android:text="2013-11-29 00:00:24"
+                android:textColor="#000" />
+
+            <com.smarttaxi.driver.components.CFTextView
+                android:id="@+id/txtDriverLoc"
+                style="@style/TextStylePlain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
+                android:gravity="left"
+                android:text="Abul Asar Hafeez Jalandhri Road Karachi 75290"
+                android:textColor="#000" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center_vertical|right"
+            android:layout_weight="0.5"
+            android:background="#f0f0f0"
+            android:gravity="right"
+            android:orientation="vertical" >
+
+            <com.smarttaxi.driver.components.CFTextView
+                style="@style/TextStylePlain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="3dip"
+                android:text="Total"
+                android:textColor="#000" />
+
+            <com.smarttaxi.driver.components.CFTextView
+                android:id="@+id/txtDriverAmount"
+                style="@style/TextStylePlain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="$ 142.00"
+                android:textColor="#000" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

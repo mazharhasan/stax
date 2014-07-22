@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_vertical"
+    android:background="@android:color/black"
+    android:padding="10dp" >
+
+    <LinearLayout
+        android:id="@+id/topContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:dividerPadding="5dp"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <TextView
+            style="@style/TextStylePlain"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:gravity="left"
+            android:text="New Pickup Request" />
+
+        <View
+            android:id="@+id/separator"
+            android:layout_width="fill_parent"
+            android:layout_height="1dip"
+            android:background="#ffffff" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/secondFromTop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/topContainer"
+        android:dividerPadding="5dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="20dip" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:id="@+id/passengerImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                android:src="@drawable/image_holder" />
+
+            <TextView
+                android:id="@+id/passengerName"
+                style="@style/TextStylePlain"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="10dp"
+                android:text="Mohammad Taha Iqbal" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dip"
+            android:layout_weight="0.4"
+            android:gravity="top"
+            android:orientation="vertical" >
+
+            <TextView
+                style="@style/TextStylePlain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:gravity="left"
+                android:text="Pick Up Location :" />
+
+            <TextView
+                android:id="@+id/pickupAddress"
+                style="@style/TextStylePlain"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dip"
+                android:fontFamily="sans-serif"
+                android:gravity="top"
+                android:text="Sector 14 b shadman town r474 north nazimabad" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dip"
+            android:layout_weight="0.4"
+            android:gravity="top"
+            android:orientation="vertical" >
+
+            <TextView
+                style="@style/TextStylePlain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top|left"
+                android:text="Pick Up Time :" />
+
+            <TextView
+                android:id="@+id/pickupTime"
+                style="@style/TextStylePlain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dip"
+                android:gravity="top|left"
+                android:text="11/23/2013 :3:30" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dip"
+            android:layout_weight="0.4"
+            android:gravity="top"
+            android:orientation="vertical" >
+
+            <TextView
+                style="@style/TextStylePlain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:gravity="top|left"
+                android:text="Additional Message :" />
+
+            <TextView
+                android:id="@+id/additionalMessage"
+                style="@style/TextStylePlain"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dip"
+                android:fontFamily="sans-serif"
+                android:gravity="top|left"
+                android:text="Helllo this is the test message" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="10dip"
+            android:layout_weight="0.2"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <TextView
+                style="@style/TextStylePlain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:paddingLeft="20dp"
+                android:text="Time Remaining :" />
+
+            <TextView
+                android:id="@+id/remainingTime"
+                style="@style/TextStylePlain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:fontFamily="sans-serif"
+                android:gravity="left"
+                android:text="14 Sec" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.3"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="1" >
+
+            <Button
+                android:id="@+id/rejectRequestButton"
+                style="@style/TextStyleForButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0.5"
+                android:background="@drawable/reject_request_button"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:text="Reject"
+                tools:ignore="NestedWeights" >
+            </Button>
+
+            <View
+                android:layout_width="3dp"
+                android:layout_height="1dp" />
+
+            <Button
+                android:id="@+id/acceptRequestButton"
+                style="@style/TextStyleForButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0.5"
+                android:background="@drawable/accept_request_button"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:text="Accept" >
+            </Button>
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>
