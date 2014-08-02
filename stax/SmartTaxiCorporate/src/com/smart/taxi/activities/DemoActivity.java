@@ -42,7 +42,7 @@ import android.widget.TextView;
 import ch.boye.httpclientandroidlib.message.BasicNameValuePair;
 
 import com.google.android.gcm.GCMRegistrar;
-import com.smart.taxi.R;
+import com.smarttaxi.client.R;
 import com.smart.taxi.entities.CustomHttpException;
 import com.smart.taxi.entities.CustomHttpResponse;
 import com.smart.taxi.interfaces.HttpResponseListener;

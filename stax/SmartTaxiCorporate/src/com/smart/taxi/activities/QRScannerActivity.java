@@ -16,7 +16,7 @@ import ch.boye.httpclientandroidlib.message.BasicNameValuePair;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
-import com.smart.taxi.R;
+import com.smarttaxi.client.R;
 import com.smart.taxi.constants.APIConstants;
 import com.smart.taxi.entities.CustomHttpException;
 import com.smart.taxi.entities.CustomHttpResponse;

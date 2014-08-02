@@ -17,7 +17,7 @@ import android.widget.LinearLayout;
 import ch.boye.httpclientandroidlib.message.BasicNameValuePair;
 
 import com.google.gson.JsonObject;
-import com.smart.taxi.R;
+import com.smarttaxi.client.R;
 import com.smart.taxi.components.CFTextView;
 import com.smart.taxi.constants.APIConstants;
 import com.smart.taxi.entities.CustomHttpException;

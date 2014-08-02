@@ -43,7 +43,7 @@ import android.widget.Toast;
 
 import com.smart.taxi.BarcodeActivity;
 import com.smart.taxi.GcmIntentService;
-import com.smart.taxi.R;
+import com.smarttaxi.client.R;
 import com.smart.taxi.adapters.LeftMenuAdapter;
 import com.smart.taxi.components.CFTextView;
 import com.smart.taxi.entities.TripDetails;

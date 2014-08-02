@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import ch.boye.httpclientandroidlib.message.BasicNameValuePair;
 
-import com.smart.taxi.R;
+import com.smarttaxi.client.R;
 import com.smart.taxi.activities.CustomHttpClass;
 import com.smart.taxi.activities.SplashActivity;
 import com.smart.taxi.components.CFEditText;

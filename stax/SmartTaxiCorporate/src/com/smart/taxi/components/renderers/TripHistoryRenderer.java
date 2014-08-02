@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.widget.FrameLayout;
 
-import com.smart.taxi.R;
+import com.smarttaxi.client.R;
 import com.smart.taxi.components.CFTextView;
 import com.smart.taxi.entities.Journey;
 

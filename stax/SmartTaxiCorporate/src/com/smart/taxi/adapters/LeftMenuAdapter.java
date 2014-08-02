@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 
-import com.smart.taxi.R;
+import com.smarttaxi.client.R;
 import com.smart.taxi.components.LeftSlideMenuItem;
 
 

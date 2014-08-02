@@ -31,7 +31,7 @@ import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.maps.GeoPoint;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.smart.taxi.R;
+import com.smarttaxi.client.R;
 import com.smart.taxi.activities.ContainerActivity;
 import com.smart.taxi.activities.CustomHttpClass;
 import com.smart.taxi.activities.SplashActivity;

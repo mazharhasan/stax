@@ -3,10 +3,10 @@ package com.smart.taxi;
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.ImageView;
-
 import com.smart.taxi.activities.SplashActivity;
 import com.smart.taxi.components.CFTextView;
 import com.smart.taxi.utils.DownloadImagesTask;
+import com.smarttaxi.client.R;
 
 public class BarcodeActivity extends Activity {
 

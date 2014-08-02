@@ -36,7 +36,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.google.android.gcm.GCMRegistrar;
-import com.smart.taxi.R;
+import com.smarttaxi.client.R;
 import com.smart.taxi.activities.SplashActivity;
 import com.smart.taxi.constants.APIConstants;
 

@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.smart.taxi.R;
+import com.smarttaxi.client.R;
 
 
 /*

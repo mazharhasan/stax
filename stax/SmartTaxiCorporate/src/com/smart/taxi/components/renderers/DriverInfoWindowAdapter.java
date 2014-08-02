@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import com.google.android.gms.maps.GoogleMap.InfoWindowAdapter;
 import com.google.android.gms.maps.model.Marker;
-import com.smart.taxi.R;
+import com.smarttaxi.client.R;
 import com.smart.taxi.utils.Utils;
 
 public class DriverInfoWindowAdapter implements InfoWindowAdapter {

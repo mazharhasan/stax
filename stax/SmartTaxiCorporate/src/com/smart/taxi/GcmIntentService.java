@@ -18,7 +18,6 @@ package com.smart.taxi;
 
 
 import java.util.Random;
-
 import android.app.IntentService;
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -32,9 +31,9 @@ import android.os.PowerManager;
 import android.os.SystemClock;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
-
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.smart.taxi.utils.Utils;
+import com.smarttaxi.client.R;
 
 /**
  * IntentService responsible for handling GCM messages.

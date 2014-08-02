@@ -19,7 +19,7 @@ import android.widget.TimePicker;
 import android.widget.TimePicker.OnTimeChangedListener;
 import android.widget.Toast;
 
-import com.smart.taxi.R;
+import com.smarttaxi.client.R;
 import com.smart.taxi.entities.TripDetails;
 import com.smart.taxi.fragments.FindARideFragment;
 

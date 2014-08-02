@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import com.smart.taxi.R;
+import com.smarttaxi.client.R;
 import com.smart.taxi.activities.SplashActivity;
 import com.smart.taxi.components.CFTextView;
 import com.smart.taxi.entities.User;

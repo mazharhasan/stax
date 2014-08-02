@@ -47,7 +47,7 @@ import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.smart.taxi.R;
+import com.smarttaxi.client.R;
 import com.smart.taxi.constants.APIConstants;
 import com.smart.taxi.entities.CorporateInfo;
 import com.smart.taxi.entities.CustomHttpException;

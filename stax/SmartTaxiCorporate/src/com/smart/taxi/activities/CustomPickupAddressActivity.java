@@ -2,7 +2,7 @@ package com.smart.taxi.activities;
 
 import android.os.Bundle;
 
-import com.smart.taxi.R;
+import com.smarttaxi.client.R;
 
 public class CustomPickupAddressActivity extends BaseActivity {
 

@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.smart.taxi.R;
+import com.smarttaxi.client.R;
 
 
 public class NumberPicker extends LinearLayout implements OnClickListener{
