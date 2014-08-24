@@ -109,7 +109,12 @@ public class ContainerActivity extends BaseActivity {
         	registerReceiver(mHandleMessageReceiver, new IntentFilter(GcmIntentService.DISPLAY_MESSAGE_ACTION));
         }catch(Exception ex){}
         mTitle = mDrawerTitle = "Preparing...";
-        mNavigationLabels = getResources().getStringArray(R.array.navigation_labels);
+        if(SplashActivity.loggedInUser.isCorporateUser())
+        {
+        	mNavigationLabels = getResources().getStringArray(R.array.navigation_labels_for_corporate);
+        }else{
+        	mNavigationLabels = getResources().getStringArray(R.array.navigation_labels_for_customers);
+        }
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
         mDrawer = (LinearLayout) findViewById(R.id.drawerLayout);
@@ -275,16 +280,21 @@ public class ContainerActivity extends BaseActivity {
 				break;
 				
 			case 4:
+				if(SplashActivity.loggedInUser.isCorporateUser())
+				{
+					lastIndex = 0;
+					Intent intent = new Intent(this, BarcodeActivity.class);
+					startActivity(intent);
+					return;
+				}else{
+					fragment = new PaymentOptionsFragment();
+					tag = PaymentOptionsFragment.TAG;
+					break;
+				}
+			case 5:
 				fragment = new ChangeTipFragment();
 				tag = ChangeTipFragment.TAG;
 				break;
-				
-			case 5:
-				lastIndex = 0;
-				Intent intent = new Intent(this, BarcodeActivity.class);
-				startActivity(intent);
-				//finish();
-				return;
 				
 			case 6:
 				SplashActivity.doLogoutAction = true;

@@ -1,6 +1,7 @@
 package com.smart.taxi.fragments;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -10,23 +11,41 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.json.JSONObject;
+
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.DialogInterface.OnClickListener;
+import android.graphics.Point;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Build;
+import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.WindowManager.LayoutParams;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
+import ch.boye.httpclientandroidlib.HttpEntity;
+import ch.boye.httpclientandroidlib.HttpResponse;
+import ch.boye.httpclientandroidlib.client.ClientProtocolException;
+import ch.boye.httpclientandroidlib.client.HttpClient;
+import ch.boye.httpclientandroidlib.client.methods.HttpGet;
+import ch.boye.httpclientandroidlib.impl.client.DefaultHttpClient;
 import ch.boye.httpclientandroidlib.message.BasicNameValuePair;
 
 import com.google.android.gms.maps.CameraUpdate;
@@ -47,12 +66,15 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.smarttaxi.client.R;
+import com.smart.taxi.activities.ConfirmTripActivity;
 import com.smart.taxi.activities.ContainerActivity;
 import com.smart.taxi.activities.CustomHttpClass;
 import com.smart.taxi.activities.SplashActivity;
+import com.smart.taxi.adapters.PlacesAutoCompleteAdapter;
 import com.smart.taxi.components.CFEditText;
 import com.smart.taxi.components.CFTextView;
 import com.smart.taxi.components.CustomTripDialogFragment;
@@ -75,7 +97,8 @@ public class FindARideFragment extends BaseFragment implements
 				OnMapClickListener, 
 				OnMyLocationButtonClickListener, 
 				OnMyLocationChangeListener,
-				OnClickListener, OnInfoWindowClickListener
+				OnClickListener, OnInfoWindowClickListener,
+				OnItemClickListener
 	{
 
 	public static final String TAG = "findARide";
@@ -104,6 +127,7 @@ public class FindARideFragment extends BaseFragment implements
 	private ImageButton imgBtnSearchAddress;
 	private ImageButton imgBtnSearchIcon;
 	private TripDetails defaultTripDetails;
+	private AutoCompleteTextView autoCompView;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -155,8 +179,8 @@ public class FindARideFragment extends BaseFragment implements
 			//getActivity().getActionBar().hide();
 			mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.mapFindARide);
 			
-			//StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-		    //StrictMode.setThreadPolicy(policy);
+			StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+		    StrictMode.setThreadPolicy(policy);
 			//mapView = (MapView)
 			
 			//mapView.onCreate(savedInstanceState);
@@ -176,7 +200,7 @@ public class FindARideFragment extends BaseFragment implements
 	
 	private void initUI() {
 		try {
-			tfAddress = (CFTextView)rootView.findViewById(R.id.txtAddressFindRide);
+			
 			btnPickUp = (Button) rootView.findViewById(R.id.btnFindARide);
 			btnReset = (ImageButton) rootView.findViewById(R.id.btnResetFindRide);
 			btnPickUpOptions = (Button) rootView.findViewById(R.id.btnOptionsFindRide);
@@ -195,6 +219,12 @@ public class FindARideFragment extends BaseFragment implements
 			setupMap();
 			initLocation();
 			moveToMyLocation(1.5);
+			autoCompView = (AutoCompleteTextView) rootView.findViewById(R.id.autocomplete);
+		    autoCompView.setAdapter(new PlacesAutoCompleteAdapter(getActivity(), R.layout.list_item));
+		    autoCompView.setOnItemClickListener(this);
+		    autoCompView.setHint("");
+		    //tfAddress = (CFTextView)rootView.findViewById(R.id.txtAddressFindRide);
+		    //tfAddress.setVisibility(View.GONE);
 		} catch (Exception e) {
 			e.printStackTrace();
 			Log.e("Error", e.toString());
@@ -235,7 +265,7 @@ public class FindARideFragment extends BaseFragment implements
 				return;
 			googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 			googleMap.setMyLocationEnabled(true);
-			googleMap.setPadding(10, 10, 10, 100);
+			googleMap.setPadding(0,170,0,0);
 			googleMap.setMyLocationEnabled(true);
 			googleMap.setOnMapClickListener(this);
 			googleMap.setOnMyLocationButtonClickListener(this);
@@ -306,15 +336,32 @@ public class FindARideFragment extends BaseFragment implements
 			{
 				if(NetworkAvailability.IsNetworkAvailable(getActivity()))
 				{
+					if(isCustomAddress)
+					{
+						requestPosition = currentLatLng;
+					}else{
+						if(googleMap != null && googleMap.getMyLocation() != null)
+						{
+							requestPosition = new LatLng(googleMap.getMyLocation().getLatitude(), googleMap.getMyLocation().getLongitude());
+						}else{
+							CommonUtilities.displayAlert(getActivity(), "Can not detect your location,  please try again later", "", "Ok", "", false);
+							return;
+						}
+					}
 					if(SplashActivity.loggedInUser.isCorporateUser() && SplashActivity.loggedInUser.getCoporateID() > 0)
 					{
 						toggleButtons(false);
-						checkSurroundingPostInformation();
+						//stopped looking for posts around me and directly crete the map
+						//checkSurroundingPostInformation();
+						hasPostCheckedInResults = false;
+						//get cabs around me
+						runCreateCorporateJourney();
 					}else{
 						// process for credit card user:
+						
+						runGetCustomerCabs();
+						Log.e("normal user", "getting general map");
 						return;
-						
-						
 						//pickup_lat=43.587913&pickup_lng=-79.64321&pickup_time=2014-02-19 17:12:32 +0000&user_id=367&optional_message=None&journey_type=3
 					}
 						
@@ -336,6 +383,16 @@ public class FindARideFragment extends BaseFragment implements
 		default:
 			break;
 		}
+		
+	}
+
+	private void runGetCustomerCabs() {
+		toggleButtons(false);
+		LoaderHelper.showLoader(getActivity(), "Finding cabs around you...", "");
+		List<BasicNameValuePair> params = new ArrayList<BasicNameValuePair>();
+		params.add(new BasicNameValuePair("user_lat",String.valueOf(requestPosition.latitude)));
+		params.add(new BasicNameValuePair("user_lng",String.valueOf(requestPosition.longitude)));
+		CustomHttpClass.runPostService(this, APIConstants.METHOD_POST_LOAD_CUSTOMER_CABS, params, true, true);
 		
 	}
 
@@ -417,9 +474,10 @@ public class FindARideFragment extends BaseFragment implements
 				//if no post checked in drivers found
 				if(response.getStatusCode() > 0)
 				{
-					hasPostCheckedInResults = false;
+					//removed the corporate process to find the posts
+					/*hasPostCheckedInResults = false;
 					//get cabs around me
-					runCreateCorporateJourney();
+					runCreateCorporateJourney();*/
 					return;
 				}else{
 					hasPostCheckedInResults = true;
@@ -427,7 +485,9 @@ public class FindARideFragment extends BaseFragment implements
 					showCorporateDialogue(null);
 					return;
 				}
-			}else if(response.getMethodName() == APIConstants.METHOD_POST_CREATE_CORP_JOURNEY_FOR_CABS)
+			}else if(response.getMethodName() == APIConstants.METHOD_POST_CREATE_CORP_JOURNEY_FOR_CABS
+					||
+					response.getMethodName() == APIConstants.METHOD_POST_LOAD_CUSTOMER_CABS)
 			{
 				LoaderHelper.hideLoaderSafe();
 				if(hasPostCheckedInResults)
@@ -508,8 +568,36 @@ public class FindARideFragment extends BaseFragment implements
 					pf.saveCurrentTrip(SplashActivity.getTripNewDetails());
 					((ContainerActivity)getActivity()).selectItem(0);
 				}
-			}
-			
+			}else if(response.getMethodName().startsWith("https://maps.googleapis.com/maps/api/geocode/json"))
+			{
+				JsonObject results = JsonHelper.parseToJsonObject(response.getRawJson());
+				if(results.has("results"))
+				{
+					JsonArray arr;
+					try{
+						arr = results.getAsJsonArray("results");
+						JsonObject resultObj = arr.get(0).getAsJsonObject();
+						if(resultObj != null && resultObj.has("geometry"))
+						{
+							resultObj = resultObj.get("geometry").getAsJsonObject();
+							if(resultObj.has("location"))
+							{
+								JsonObject location = resultObj.get("location").getAsJsonObject();
+								Log.e(location.get("lat").getAsString(), location.get("lng").getAsString());
+								LatLng newLocation = new LatLng(location.get("lat").getAsDouble(), location.get("lng").getAsDouble());
+								onMapClick(newLocation);
+							}
+						}
+							
+						Log.e(TAG,arr.toString());
+					}catch(Exception ex)
+					{
+						
+					}
+					
+				}
+				
+			}			
 		}
 	}
 	
@@ -561,6 +649,7 @@ public class FindARideFragment extends BaseFragment implements
 		params.add(new BasicNameValuePair("pickup_lng", lng));
 		params.add(new BasicNameValuePair("user_id", SplashActivity.loggedInUser.getId()));
 		params.add(new BasicNameValuePair("optional_message", ""));
+		
 		//TODO: fix journey type here
 		params.add(new BasicNameValuePair("journey_type", "4"));
 		createTripObjet(params, true);
@@ -642,7 +731,8 @@ public class FindARideFragment extends BaseFragment implements
 	public void onMapClick(LatLng point) {
 		isCustomAddress = true;
 		currentLatLng = point;
-		tfAddress.setText("Loading address...");
+		//tfAddress.setText("Loading address...");
+		autoCompView.setHint("Loading address...");
 		placeUserLocationMarker(15, point);
 	}
 	
@@ -750,7 +840,13 @@ public class FindARideFragment extends BaseFragment implements
 		@Override
 		protected void onPostExecute(String address) {
 			if(!address.toLowerCase().contains("exception"))
-				tfAddress.setText(address);
+			{
+				//tfAddress.setText(address);
+				if(autoCompView != null)
+					autoCompView.setHint(address);
+			}else{
+				autoCompView.setHint("Type address...");
+			}
 			/*else
 				tfAddress.setText("Address not found for this location.");*/
         }
@@ -806,18 +902,23 @@ public class FindARideFragment extends BaseFragment implements
 		params.add(new BasicNameValuePair("optional_message", message));
 		params.add(new BasicNameValuePair("user_id", SplashActivity.loggedInUser.getId()));
 		params.add(new BasicNameValuePair("journey_type", journeyType));
+		params.add(new BasicNameValuePair("group_id", "5"));
 		if(hasPostCheckedInResults)
 		{
 			createTripObjet(params, true);
 			CustomHttpClass.runPostService(this, APIConstants.METHOD_POST_CREATE_CORP_JOURNEY_FOR_CABS, params, true, false);	
 		}else{
 			params.add(new BasicNameValuePair("cab_id", pinDialog.getCabId()));
+			params.add(new BasicNameValuePair("payment_option", "corporate"));
+			params.add(new BasicNameValuePair("payment_status", "authorized"));
+			params.add(new BasicNameValuePair("payment_type", "webservice"));
+			params.add(new BasicNameValuePair("payment_detail", "0"));
 			createTripObjet(params, false);
 			CustomHttpClass.runPostService(this, APIConstants.METHOD_CREATE_JOURNEY, params, true, false);
 		}
 		
 		LoaderHelper.showLoader(getActivity(), "Creating trip...", "");
-		
+
 		
 	}
 
@@ -836,7 +937,12 @@ public class FindARideFragment extends BaseFragment implements
 		cabLatLng = marker.getPosition();
 		Cab cab = FindARideFragment.markers.get(marker);
 		Log.i("Cab id:", cab.getDriver().getCabID());
-		showCorporateDialogue(cab.getDriver().getCabID());
+		if(SplashActivity.loggedInUser.isCorporateUser())
+		{
+			showCorporateDialogue(cab.getDriver().getCabID());
+		}else{
+			showConfirmBookingDialogue(cab.getDriver().getCabID());
+		}
 		//
 		/*StringBuilder urlString = new StringBuilder();
         urlString.append("http://maps.googleapis.com/maps/api/directions/json");
@@ -857,12 +963,40 @@ public class FindARideFragment extends BaseFragment implements
 
 	}
 
+	private void showConfirmBookingDialogue(String cabID) {
+		//Dialog dialog=new Dialog(this,android.R.style.Theme_Dark_NoTitleBar_FullScreen)
+		startActivity(new Intent(getActivity(), ConfirmTripActivity.class));
+	}
+
 	public TripDetails getDefaultTripDetails() {
 		return defaultTripDetails;
 	}
 
 	public void setDefaultTripDetails(TripDetails defaultTripDetails) {
 		this.defaultTripDetails = defaultTripDetails;
+	}
+
+	@Override
+	public void onItemClick(AdapterView<?> adapterView, View arg1, int position, long id) {
+		String str = (String) adapterView.getItemAtPosition(position);
+		try {
+			reverseLookUp(str);
+		} catch (ClientProtocolException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        //Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
+		
+	}
+
+	private void reverseLookUp(String str) throws ClientProtocolException, IOException {
+		// TODO Auto-generated method stub
+		LoaderHelper.showLoader(getActivity(), "Locating address on map...", "");
+		String url = "https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyBBxHuIp1b8FdoD3oG47TmIZ9UikDjjcJ0&address=" + URLEncoder.encode(str, "UTF-8");
+		CustomHttpClass.runDirectPostService(this, url, null, true, false);
 	}
 }
 

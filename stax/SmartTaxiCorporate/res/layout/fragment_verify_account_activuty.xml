@@ -1,0 +1,41 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    tools:context="com.smarttaxi.client.VerifyAccountActivuty$PlaceholderFragment" >
+
+    <com.smart.taxi.components.CFTextView 
+        android:id="@+id/cFTextView1" 
+        android:layout_width="wrap_content" 
+        android:layout_height="wrap_content" 
+        android:text="@string/label_verify_account_desc" />
+
+    <com.smart.taxi.components.CFEditText
+        android:id="@+id/txtVerifyAccountCode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/cFTextView1"
+        android:layout_below="@+id/cFTextView1"
+        android:layout_marginTop="14dp"
+        android:ems="10"
+        android:hint="Enter verification code..."
+        android:text="" >
+
+        <requestFocus />
+    </com.smart.taxi.components.CFEditText>
+    
+    <Button
+            android:id="@+id/btnVerifyAccount"
+            style="@style/ButtonsTheme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/button_verify_account" />
+
+</LinearLayout>

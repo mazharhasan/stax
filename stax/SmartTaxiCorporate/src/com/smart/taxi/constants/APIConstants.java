@@ -7,7 +7,7 @@ public final class APIConstants {
 	public static final int SUCESS_CODE = 0;
 	public static final int UPDATED_CODE = 5401;
 	
-	public static final String API_END_POINT = "http://smarttaxi.ca/services/stax/user/api/";
+	public static final String API_END_POINT = "http://api.smarttaxi.ca/services_v2/stax/user/api/";//"http://api.smarttaxi.ca/services/stax/user/api/";
 	public static final String METHOD_UPDATE_DRIVE_LOCATION = "add_driver_location.json";
 	public static final String METHOD_LOGIN = "verify_login.json";
 	public static final String METHOD_CREATE_JOURNEY = "create_journey.json";
@@ -29,6 +29,12 @@ public final class APIConstants {
 	public static final String METHOD_POST_CREATE_CORP_JOURNEY_FOR_CABS = "create_corporate_journey.json";
 	public static final String METHOD_POST_TRIP_HISTORY = "get_past_journeys.json";
 	public static final String METHOD_POST_UPDATE_TIP = "set_tip.json";
+	public static final String METHOD_POST_VERIFY_ACCOUNT = "verify_account.json";
+	public static final String METHOD_POST_RESEND_CODE = "resend_verify_account.json";
+	public static final String METHOD_POST_REGISTER_USER = "verify_signup.json";
+	public static final String METHOD_POST_ADD_CARD = "add_card.json";
+	public static final String METHOD_POST_LOAD_CUSTOMER_CABS = "get_cabs_around_me.json";
+	
 	
 	
 	public static final String KEY_HEADER = "header";
@@ -38,6 +44,7 @@ public final class APIConstants {
 	
 	public static final String KEY_USER = "User";
 	public static final String KEY_CORPORATE_INFO = "corporate_info";
+	public static final String KEY_CARDS_INFO = "UserCardInformation";
 	public static final String KEY_CORPORATE_ID = "corporate_id";
 	public static final String KEY_JOURNEY_TYPE = "journey_type";
 	public static final String KEY_USER_ID_TO = "user_id_to";
@@ -248,6 +255,7 @@ public final class APIConstants {
 	public static final String KEY_PHONE = "phone";
 	public static final String METHOD_UPDATE_PROFILE = "update_profile.json";
 	public static final String KEY_TIP = "tip";
+	public static final String IS_FIRST_CARD = "isFirstCard";
 	public static String METHOD_DRIVER_CABS="get_driver_cabs.json";
 	public static String KEY_USER_DRIVER_ID = "driver_user_id";
 	public static String KEY_CAB_NO = "cab_no";

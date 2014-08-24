@@ -1,0 +1,145 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    android:scrollbars="vertical"
+    tools:context="com.smarttaxi.client.SignUpActivity$PlaceholderFragment" >
+
+   <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+        
+       <LinearLayout
+           android:orientation="horizontal"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:paddingTop="10dp" 
+           >           
+           
+           <com.smart.taxi.components.CFEditText
+	            android:id="@+id/txtSignUpFirstName"
+	            android:layout_width="0dp"
+	            android:layout_height="wrap_content"
+	            android:ems="10"
+	            android:layout_weight="1"
+	            android:hint="@string/hint_first_name_"
+	            android:nextFocusDown="@+id/cFLastName"
+	            android:inputType="textCapWords|textAutoComplete" />
+
+	        <com.smart.taxi.components.CFEditText
+	            android:id="@+id/cFLastName"
+	            android:layout_width="0dp"
+	            android:layout_height="wrap_content"
+	            android:ems="10"
+	            android:layout_weight="1"
+	            android:hint="@string/hint_last_name"
+	            android:inputType="textCapWords|textAutoComplete" />
+       </LinearLayout>
+        <com.smart.taxi.components.CFEditText
+            android:id="@+id/txtSignUpEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:paddingTop="20dp"
+            android:hint="@string/hint_email_username"
+            android:inputType="textAutoComplete|textEmailAddress" />
+
+        <com.smart.taxi.components.CFEditText
+            android:id="@+id/txtSignUpPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:paddingTop="20dp"
+            android:hint="@string/hint_password"
+            android:inputType="textPassword" />
+
+        <com.smart.taxi.components.CFEditText
+            android:id="@+id/txtSignUpPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:paddingTop="20dp"
+            android:hint="@string/hint_phone_number"
+            android:inputType="phone"
+            android:text="" />
+        
+        <RadioGroup 
+            android:id="@+id/rgGender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="20dp"
+            >
+            <com.smart.taxi.components.CFTextView
+	            android:id="@+id/labelGender"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="Gender:"
+	            />
+            <RadioButton 
+                android:id="@+id/rbMale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Male"
+                android:checked="false"
+                android:textColor="#111"
+                />
+            <RadioButton android:id="@+id/rbFemale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="16dp"
+                android:text="Female"
+                android:textColor="#111"
+                android:checked="false"/>
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/btnCreateAccount"
+            style="@style/ButtonsTheme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/button_create_account" />
+        <LinearLayout 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+            
+            <View
+			    android:layout_width="0dp"
+			    android:layout_height="1dp"
+			    android:layout_weight="1"
+			    android:background="@android:color/darker_gray"/>
+            <com.smart.taxi.components.CFTextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="OR"
+	            android:paddingLeft="5dp"
+	            android:paddingRight="5dp"
+	            />
+            <View
+			    android:layout_width="0dp"
+			    android:layout_height="1dp"
+			    android:layout_weight="1"
+			    android:background="@android:color/darker_gray"/>
+        </LinearLayout>
+        
+        <Button
+            android:id="@+id/btnFBLogin"
+            style="@style/ButtonsTheme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/button_login_using_facrbook" />
+    </LinearLayout>
+
+</ScrollView>

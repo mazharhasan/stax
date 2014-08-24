@@ -9,7 +9,7 @@ public final class APIConstants {
 	public static final int SUCESS_CODE = 0;
 	public static final int UPDATED_CODE = 5401;
 
-	public static final String API_END_POINT = "http://smarttaxi.ca/services/stax/user/api/";
+	public static final String API_END_POINT = "http://technyxsystems.com/demo/stax/user/api/";//"http://api.smarttaxi.ca/services/stax/user/api/";
 	// public static final String API_END_POINT =
 	// "http://technyxsystems.com/demo/stax/user/api/";
 	public static final String METHOD_GET_DIRECT_PROFILE = "get_profile.json";

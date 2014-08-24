@@ -38,6 +38,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 import ch.boye.httpclientandroidlib.message.BasicNameValuePair;
 
 import com.google.android.gcm.GCMRegistrar;
@@ -46,9 +47,15 @@ import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.smarttaxi.client.AddCardsActivity;
 import com.smarttaxi.client.R;
+import com.smarttaxi.client.SignUpActivity;
+import com.smarttaxi.client.VerifyAccountActivuty;
 import com.smart.taxi.constants.APIConstants;
+import com.smart.taxi.entities.Cab;
+import com.smart.taxi.entities.Card;
 import com.smart.taxi.entities.CorporateInfo;
 import com.smart.taxi.entities.CustomHttpException;
 import com.smart.taxi.entities.CustomHttpResponse;
@@ -81,6 +88,8 @@ public class SplashActivity extends BaseActivity {
 	private static boolean onceRegistered = false;
 	private static boolean isRestoring = false;
 	private Bundle bundle;
+	private Button btnRegister;
+	private static boolean launched = false;
 	
 	public SplashActivity()
 	{
@@ -128,13 +137,7 @@ public class SplashActivity extends BaseActivity {
 	{
 		super.onResume();
 		bundle = getIntent().getExtras();
-    	if(bundle != null)
-    	{
-    		try{
-    			Log.e("score", bundle.get("to_courage").toString());
-    		}catch(Exception ex){}
-    		
-    	}
+    	
 		if(doLogoutAction)
 		{
 			return;
@@ -142,12 +145,16 @@ public class SplashActivity extends BaseActivity {
 		
 		if(SplashActivity.isLoggedIn())
 		{
+			
 			defaultLoginAction();
-			return;
+			//return;
 		}
+		
 		if(btnLogin != null)
 		{
 			btnLogin.setOnClickListener(this);
+		}else{
+			initUI();
 		}
 			
 	}
@@ -156,13 +163,27 @@ public class SplashActivity extends BaseActivity {
 		tfEmail = (EditText) findViewById(R.id.login_email);
 		tfPassword = (EditText) findViewById(R.id.login_password);
 		btnLogin = (Button) findViewById(R.id.btnLogin);
+		btnRegister = (Button) findViewById(R.id.btnRegister);
 		btnLogin.setOnClickListener(this);
+		btnRegister.setOnClickListener(this);
 	}
 
 	
     @Override
     protected void onActivityResult(int requestCode,
             int resultCode, Intent data) {
+    	if(requestCode == AddCardsActivity.CARD_ADD_REQUEST)
+		{
+			if(resultCode == AddCardsActivity.CARD_RESULT_SUCCESS)
+			{
+				if(loggedInUser.hasCards())
+				{
+					defaultLoginAction();
+				}
+			}else{
+				Toast.makeText(this, "Add card cancelled", Toast.LENGTH_LONG).show();
+			}
+		}
     	
     	Log.e("On activity result", String.valueOf(requestCode).concat(String.valueOf(requestCode)));
 		/*super.onActivityResult(requestCode, resultCode, data);
@@ -196,12 +217,33 @@ public class SplashActivity extends BaseActivity {
 
 	@Override
 	public void onClick(View v) {
-		doLogin();
+		switch (v.getId()) {
+		case R.id.btnLogin:	
+			doLogin();
+			break;
+			
+		case R.id.btnRegister:
+			doRegister();
+			break;
+
+		default:
+			break;
+		}
+		
 		//startLocationService();
 		
 	}
 
 	
+
+	private void doRegister() {
+		// TODO Auto-generated method stub
+		//Intent signUpActivity = new Intent(getApplicationContext(), AddCardsActivity.class);
+		Intent signUpActivity = new Intent(getApplicationContext(), SignUpActivity.class);
+		//signUpActivity.setFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT | Intent.FLAG_ACTIVITY_NEW_TASK);
+		startActivity(signUpActivity);
+		overridePendingTransition(R.anim.slide_left, R.anim.slide_left);
+	}
 
 	private void doLogin() {
 		if(SplashActivity.isLoggedIn())
@@ -232,6 +274,24 @@ public class SplashActivity extends BaseActivity {
 			Log.e("Login function", "Not validated");
 		}
 		
+	}
+	
+	public static void doForcedLogin(String email, String password)
+	{
+		if(NetworkAvailability.IsNetworkAvailable(SplashActivity.splashActivity))
+		{
+			LoaderHelper.showLoader(SplashActivity.splashActivity, "Logging in...", "");
+			List<BasicNameValuePair> params = new ArrayList<BasicNameValuePair>();
+			params.add(new BasicNameValuePair(
+					APIConstants.KEY_USERNAME, email));
+			//Utils.validateEmptyString(tfEmail.getText().toString().trim())));
+			params.add(new BasicNameValuePair(
+					APIConstants.KEY_PASSWORD, password));
+			CustomHttpClass.runPostService(SplashActivity.splashActivity, APIConstants.METHOD_LOGIN, params, false, false);
+			//HttpAsyncTask htask =  runLoginService(tfEmail.getText().toString(), tfPassword.getText().toString(),this);
+		}else{
+			NetworkAvailability.showNoConnectionDialog(SplashActivity.splashActivity);
+		}
 	}
 
 	
@@ -269,15 +329,16 @@ public class SplashActivity extends BaseActivity {
 		LoaderHelper.hideLoaderSafe();
 		if(object.getMethodName() == APIConstants.METHOD_LOGIN)
 		{
+			Log.e("Login reply", object.getRawJson());
 			if(object.getStatusCode() > 0)
 			{
-				showInvalidCredentialsMessage();
+				showInvalidCredentialsMessage(object.getStatusCode());
 				return;
 			}
 			try{
 				JsonObject userObject = CustomHttpClass.getJsonObjectFromBody(object.getRawJson(), APIConstants.KEY_USER);
 				User user = new User();
-				JsonObject corporateInfo;
+				JsonObject corporateInfo, cardsInfo;
 				JsonArray journeyTypes;
 				user = user.deserializeUserObjectFromJSON(userObject);
 				if(user.isCorporateUser())
@@ -298,6 +359,25 @@ public class SplashActivity extends BaseActivity {
 						}
 						user.setJourneyTypes(types);
 					}
+				}else{
+					cardsInfo = CustomHttpClass.getJsonObjectFromBody(object.getRawJson(), APIConstants.KEY_CARDS_INFO);
+					if(cardsInfo != null)
+					{
+						ArrayList<Card> cards = new ArrayList<Card>();
+						for (Entry<String, JsonElement> entry : cardsInfo.getAsJsonObject().entrySet()) {
+							if(!Utils.isEmptyOrNull(entry.getKey()))
+							{
+								Card card;
+								JsonObject cardJson = entry.getValue().getAsJsonObject(); 
+								card = Card.parseCard(cardJson);
+								Log.e("Card loaded", cardJson.get("card_number").getAsString());
+								cards.add(card);
+							}
+						}
+						user.setUserCards(cards);
+					}
+					Log.e("Customer here", user.toString());
+					//return;
 				}
 	
 				
@@ -306,12 +386,15 @@ public class SplashActivity extends BaseActivity {
 				user.setPassword(tfPassword.getText().toString());
 				SplashActivity.setLoggedIn(true);
 				SplashActivity.loggedInUser = user;
-				updatePreferences();
-				defaultLoginAction();
-				/*User user = (User) object.getResponse();
-				*/
-				//startLocationService();
-				//Log.e("Result object", user.getUserName());
+				if(user.isCorporateUser() || user.hasCards())
+				{
+					updatePreferences();
+					defaultLoginAction();
+				}
+				else{
+					startAddCardsActivity();
+					return;
+				}
 			}catch(Exception ex)
 			{
 				resetLoginState();
@@ -322,13 +405,24 @@ public class SplashActivity extends BaseActivity {
 			doLogoutAction = false;
 			if(object.getStatusCode() > 0)
 			{
-				
+				//until customer logout is fixed
+				CommonUtilities.displayAlert(this, "Can not log you out right now, please try late", "Logout failed!", "Ok"	, "", false);
+				defaultLoginAction();
 			}else{
+				//defaultLoginAction();
+				//CommonUtilities.displayAlert(this, "Can not log you out right now, please try late", "Logout failed!", "Ok"	, "", false);
 				postLogout();
 			}
 		}
 			
 		
+	}
+
+	private void startAddCardsActivity() {
+		Intent addCardIntent = new Intent(this, AddCardsActivity.class);
+		addCardIntent.putExtra(APIConstants.IS_FIRST_CARD, "true");
+		startActivityForResult(addCardIntent,  999);
+		overridePendingTransition(R.anim.slide_left, R.anim.slide_left);
 	}
 
 	private void updatePreferences() {
@@ -337,16 +431,34 @@ public class SplashActivity extends BaseActivity {
 		
 	}
 
-	private void showInvalidCredentialsMessage() {
+	private void showInvalidCredentialsMessage(int statusCode) {
 		// TODO Auto-generated method stub
-		resetLoginState();
-		CommonUtilities.displayAlert(this, "Please provide valid username and password.", "Invalid credentials!", "Retry", "Close", true);
+		if(statusCode == 1064)
+		{
+			startVerifyAccountActivity();
+		}else{
+			resetLoginState();
+			CommonUtilities.displayAlert(this, "Please provide valid username and password.", "Invalid credentials!", "Retry", "Close", true);
+		}
 		
 		
 		
 	}
 
+	private void startVerifyAccountActivity() {
+		Intent verifyAccountIntent = new Intent(this, VerifyAccountActivuty.class);
+		verifyAccountIntent.putExtra("email", tfEmail.getText().toString());
+		verifyAccountIntent.putExtra("password", tfPassword.getText().toString());
+		startActivity(verifyAccountIntent);
+		overridePendingTransition(R.anim.slide_left, R.anim.slide_left);
+	}
+
 	public void defaultLoginAction() {
+		if(!SplashActivity.loggedInUser.isCorporateUser() && !SplashActivity.loggedInUser.hasCards())
+		{
+			startAddCardsActivity();
+			return;
+		}
 		//startService(new Intent(getApplicationContext(), ServiceLocation.class));
 		if(Utils.isEmptyOrNull(regid))
 		{
@@ -381,7 +493,7 @@ public class SplashActivity extends BaseActivity {
 		// TODO Auto-generated method stub
 		if(exception.getMethodName() == APIConstants.METHOD_LOGIN)
 		{
-			showInvalidCredentialsMessage();
+			showInvalidCredentialsMessage(-1);
 		}else if(exception.getMethodName() == APIConstants.METHOD_LOGOUT){
 			doLogoutAction = false;
 			CommonUtilities.displayAlert(splashActivity, "Can not logout at the moment,  please try again.", "Error in logout:", "Retyr", "Close", true);
@@ -476,7 +588,8 @@ public class SplashActivity extends BaseActivity {
                     if (gcm == null) {
                         gcm = GoogleCloudMessaging.getInstance(context);
                     }
-                    regid = gcm.register("387001418175");
+                    //regid = gcm.register("387001418175");
+                    regid = gcm.register("413670147999");
                     msg = "Device registered, registration ID=" + regid;
                 } catch (IOException ex) {
                     msg = "Error :" + ex.getMessage();
@@ -514,7 +627,7 @@ public class SplashActivity extends BaseActivity {
 		}
 			
         Log.i(TAG, "registering device (regId = " + regId + ")");
-        String serverUrl = "http://smarttaxi.ca/services/stax/user/api/add_udid.json";
+        String serverUrl = APIConstants.API_END_POINT + "add_udid.json";
         Map<String, String> params = new HashMap<String, String>();
         
     	GCMRegistrar.setRegisteredOnServer(context, true);
@@ -525,7 +638,7 @@ public class SplashActivity extends BaseActivity {
         // Once GCM returns a registration id, we need to register it in the
         // demo server. As the server might be down, we will retry it a couple
         // times.
-        for (int i = 1; i <= 2; i++) {
+        for (int i = 1; i <= 1; i++) {
             Log.d(TAG, "Attempt #" + i + " to register");
             try {
                 post(serverUrl, params);
@@ -652,14 +765,19 @@ public class SplashActivity extends BaseActivity {
 		{
 			Log.e("Loader hide error", "loder doesnt exists");
 		}
-		Intent mainActivityLaunchIntent = new Intent(getApplicationContext(), ContainerActivity.class);
-		mainActivityLaunchIntent.setFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT | Intent.FLAG_ACTIVITY_NEW_TASK);
-		if(bundle != null)
+		if(!launched )
 		{
-			Log.i("Putting bundle as ", bundle.toString());
-			mainActivityLaunchIntent.putExtra("score",bundle.get("to_courage").toString());
+			Intent mainActivityLaunchIntent = new Intent(getApplicationContext(), ContainerActivity.class);
+			mainActivityLaunchIntent.setFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT | Intent.FLAG_ACTIVITY_NEW_TASK);
+			if(bundle != null)
+			{
+				Log.i("Putting bundle as ", bundle.toString());
+				mainActivityLaunchIntent.putExtra("score",bundle.get("to_courage").toString());
+			}
+			SplashActivity.launched = true;
+			startActivityForResult(mainActivityLaunchIntent, 100);
+			overridePendingTransition(R.anim.slide_left, R.anim.slide_left);
 		}
-		startActivityForResult(mainActivityLaunchIntent, 100);		
 	}
 
 	@Override
@@ -727,6 +845,12 @@ public class SplashActivity extends BaseActivity {
 
 	public static void setTripNewDetails(TripDetails tripNewDetails) {
 		SplashActivity.tripNewDetails = tripNewDetails;
+	}
+
+	public static void doPrepareForLogin(String newEMail, String newPassword) {
+		splashActivity.tfEmail.setText(newEMail);
+		splashActivity.tfPassword.setText(newPassword);
+		splashActivity.doLogin();
 	}
 }
 

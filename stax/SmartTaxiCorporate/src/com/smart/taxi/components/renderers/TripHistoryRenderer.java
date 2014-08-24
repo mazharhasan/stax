@@ -33,13 +33,6 @@ public class TripHistoryRenderer extends FrameLayout {
 		
 		//double amount = Double.valueOf(journeyData.getUserTip()) + Double.valueOf(journeyData.getPaymentAmout());
 		//((CFTextView)findViewById(R.id.txtDriverAmount)).setText(String.valueOf(amount));
-        
-        
-        
-        
-        
-        
-        
 	}
 	
 	public String getLabel()

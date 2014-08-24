@@ -51,6 +51,7 @@ public class MainActivity extends BaseActivity{
                     Intent intent = new Intent(getApplicationContext(), SplashActivity.class);
                     intent.putExtra("to_courage", "booga booga booga");
                     startActivity(intent);
+                    overridePendingTransition(R.anim.slide_left, R.anim.slide_left);
                    // startActivity(new Intent("com.smarttaxi.driver.circular.pagination.control"));
          
                     //startActivity(new Intent("com.smarttaxi.driver.activities.drawer.current.trip"));

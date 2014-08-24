@@ -27,6 +27,8 @@ public class User extends BaseWebServiceEntity {
 	private CorporateInfo corporateInfo;
 	private ArrayList<String> journeyTypes;
 	private String password;
+	private ArrayList<Card> userCards;
+	private boolean hasCards;
 	
 	public User()
 	{
@@ -497,5 +499,15 @@ public class User extends BaseWebServiceEntity {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	public boolean hasCards() {
+		return (getUserCards() != null && !getUserCards().isEmpty());
+	}
+	public ArrayList<Card> getUserCards() {
+		return userCards;
+	}
+	public void setUserCards(ArrayList<Card> userCards) {
+		this.userCards = userCards;
+	}
+	
 
 }

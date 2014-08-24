@@ -27,6 +27,7 @@ import com.smart.taxi.entities.CustomHttpResponse;
 import com.smart.taxi.entities.Journey;
 import com.smart.taxi.helpers.LoaderHelper;
 import com.smart.taxi.interfaces.HttpResponseListener;
+import com.smart.taxi.utils.CommonUtilities;
 import com.smart.taxi.utils.NetworkAvailability;
 
 public class TripHistoryFragment extends ListFragment implements HttpResponseListener {
@@ -65,8 +66,6 @@ public class TripHistoryFragment extends ListFragment implements HttpResponseLis
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
-		
 	}
 	
 	@Override
@@ -111,7 +110,7 @@ public class TripHistoryFragment extends ListFragment implements HttpResponseLis
 	public void onResponse(CustomHttpResponse response) {
 		LoaderHelper.hideLoaderSafe();
 		// TODO Auto-generated method stub
-		if(response.getMethodName() == APIConstants.METHOD_POST_TRIP_HISTORY)
+		if(response.getMethodName() == APIConstants.METHOD_POST_TRIP_HISTORY && response.getStatusCode() == 0)
 		{
 			List<Journey> journies = new ArrayList<Journey>();
 			JsonObject journiesObj = (JsonObject) CustomHttpClass.getJsonObjectFromBody(response.getRawJson(), "journeys");
@@ -190,6 +189,8 @@ public class TripHistoryFragment extends ListFragment implements HttpResponseLis
 				ListAdapter data = new CustomArrayAdapter(getActivity(), journies);
 				setListAdapter(data);
 			}
+		}else{
+			CommonUtilities.displayAlert(getActivity(), "No previous records found.", "", "Ok", "", false);
 		}
 		
 	}

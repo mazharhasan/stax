@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#f1f1f1"
+    android:padding="0dp"
+    android:orientation="vertical" >
+
+      	<com.smart.taxi.components.CFTextView
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:text="@string/label_trip_details"
+          android:background="@drawable/shape_section_heading"
+          android:textColor="#fff"
+          android:padding="6dp" />
+
+      	<TableLayout
+      	    android:layout_width="match_parent"
+      	    android:layout_height="wrap_content"
+      	    android:orientation="vertical" >
+
+      	    <TableRow
+      	        android:id="@+id/tableRow1"
+      	        android:layout_width="wrap_content"
+      	        android:layout_height="wrap_content"
+      	        android:orientation="horizontal" >
+
+      	        <com.smart.taxi.components.CFTextView
+      	            android:layout_width="0dp"
+      	            android:layout_height="wrap_content"
+      	            android:layout_weight="0.6"
+      	            android:singleLine="true"
+      	            android:padding="8dp"
+      	            android:text="Picup:" />
+      	        <com.smart.taxi.components.CFTextView
+      	            android:id="@+id/txtPickUpAddress"
+      	            android:layout_width="0dp"
+      	            android:layout_height="wrap_content"
+      	            android:layout_weight="1.4"
+      	            android:padding="8dp"
+      	            android:text="150 Paisley Blvd. West Mississauaga, ON, L5B 1E8, Canada" />
+      	        
+      	    </TableRow>
+
+      	    <TableRow
+      	        android:id="@+id/tableRow2"
+      	        android:layout_width="wrap_content"
+      	        android:layout_height="wrap_content" 
+      	        android:orientation="horizontal">
+      	        <com.smart.taxi.components.CFTextView
+      	            android:layout_width="0dp"
+      	            android:layout_height="wrap_content"
+      	            android:layout_weight="0.6"
+      	            android:padding="8dp"
+      	            android:text="Passengers" />
+      	        <com.smart.taxi.components.CFTextView
+      	            android:id="@+id/txtNumPeople"
+      	            android:layout_width="0dp"
+      	            android:layout_height="wrap_content"
+      	            android:layout_weight="0.4"
+      	            android:padding="8dp"
+      	            android:text="1" />
+      	        <com.smart.taxi.components.CFTextView
+      	            android:layout_width="0dp"
+      	            android:layout_height="wrap_content"
+      	            android:layout_weight="0.6"
+      	            android:padding="8dp"
+      	            android:text="Bags" />
+      	        <com.smart.taxi.components.CFTextView
+      	            android:id="@+id/txtNumBags"
+      	            android:layout_width="0dp"
+      	            android:layout_height="wrap_content"
+      	            android:layout_weight="0.4"
+      	            android:padding="8dp"
+      	            android:text="0" />
+      	    </TableRow>
+
+      	    <TableRow
+      	        android:id="@+id/tableRow3"
+      	        android:layout_width="wrap_content"
+      	        android:layout_height="wrap_content" 
+      	        android:orientation="horizontal">
+      	        <com.smart.taxi.components.CFTextView
+      	            android:layout_width="0dp"
+      	            android:layout_height="wrap_content"
+      	            android:padding="8dp"
+      	            android:layout_weight="0.6"
+      	            android:text="Car type" />
+      	        <com.smart.taxi.components.CFTextView
+      	            android:id="@+id/txtCarType"
+      	            android:layout_width="0dp"
+      	            android:layout_height="wrap_content"
+      	            android:layout_weight="1.4"
+      	            android:padding="8dp"
+      	            android:text="Any" />
+      	    </TableRow>
+      	</TableLayout>
+      	
+      	<com.smart.taxi.components.CFTextView
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:text="@string/label_driver_s_details"
+          android:background="@drawable/shape_section_heading"
+          android:textColor="#fff"
+          android:padding="6dp" />
+      	<LinearLayout 
+      	    android:orientation="horizontal"
+      	    android:layout_width="match_parent"
+      	    android:layout_height="wrap_content">
+
+      		<ImageView
+      		    android:id="@+id/imageView1"
+      		    android:layout_width="100dp"
+      		    android:layout_height="100dp"
+      		    android:contentDescription="Driver image"
+      		    android:padding="10dp"
+      		    android:src="@drawable/logo" />
+      	    <LinearLayout 
+      	        android:orientation="vertical"
+      	        android:layout_width="0dp"
+      	        android:layout_height="match_parent"
+      	        android:gravity="center_vertical"
+      	        android:padding="10dp"
+      	        android:layout_weight="1">
+
+      	        <com.smart.taxi.components.CFTextView
+      	            android:id="@+id/txtDriverName"
+      	            android:layout_width="wrap_content"
+      	            android:layout_height="wrap_content"
+      	            android:textSize="20sp"
+      	            android:text="Paul Iordanidis" />
+      	        <com.smart.taxi.components.CFTextView
+      	            android:id="@+id/txtDriverCompany"
+      	            android:layout_width="wrap_content"
+      	            android:layout_height="wrap_content"
+      	            android:padding="8dp"
+      	            android:text="Maple leaf taxi" />
+      	        
+      	    </LinearLayout>
+      	</LinearLayout>
+      	<com.smart.taxi.components.CFTextView
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:text="@string/label_payment_details"
+          android:background="@drawable/shape_section_heading"
+          android:textColor="#fff"
+          android:padding="6dp" />
+
+      	<Spinner
+      	    android:id="@+id/spCards"
+      	    android:layout_width="match_parent"
+      	    android:layout_height="wrap_content" />
+
+      	<Button 
+      	    style="@style/ButtonBarButton"
+      	    android:id="@+id/btnConfirmCustomerTrip"
+      	    android:layout_width="match_parent"
+      	    android:layout_height="wrap_content"
+      	    android:text="@string/btn_confirm_booking"/>
+
+</LinearLayout>

@@ -16,10 +16,10 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <permission
-        android:name="com.smart.taxi.permission.C2D_MESSAGE"
+        android:name="com.smarttaxi.client.permission.C2D_MESSAGE"
         android:protectionLevel="signature" />
 
-    <uses-permission android:name="com.smart.taxi.permission.C2D_MESSAGE" />
+    <uses-permission android:name="com.smarttaxi.client.permission.C2D_MESSAGE" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
@@ -75,8 +75,8 @@
         <activity
             android:name="com.smart.taxi.activities.MainActivity"
             android:label="@string/app_name"
-            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" 
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -85,13 +85,14 @@
         </activity>
         <activity
             android:name="com.smart.taxi.activities.SplashActivity"
-            android:label="@string/app_name"
             android:alwaysRetainTaskState="true"
+            android:label="@string/app_name"
             android:launchMode="singleInstance"
-            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" 
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" >
             <intent-filter>
                 <action android:name="com.smart.taxi.beep" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
@@ -109,10 +110,10 @@
         </activity>
         <activity
             android:name="com.smart.taxi.fragments.ChangeTipFragment"
-           android:label="@string/title_activity_change_tip" >
+            android:label="@string/title_activity_change_tip" >
         </activity>
         <activity
-            android:name="com.smart.taxi.activities.ConfirmTripActivityripActivity"
+            android:name="com.smart.taxi.activities.ConfirmTripActivity"
             android:label="@string/title_activity_confirm_trip"
             android:screenOrientation="portrait" >
         </activity>
@@ -124,10 +125,12 @@
             android:name="com.smart.taxi.activities.QRScannerActivity"
             android:screenOrientation="portrait" >
 
-            <!-- intent-filter>
+            <!--
+            intent-filter>
                 <action android:name="com.smart.taxi.beep" />
                 <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter-->
+            </intent-filter
+            -->
         </activity>
 
         <service android:name="com.smart.taxi.services.ServiceLocation" />
@@ -149,8 +152,10 @@
         </activity>
         <activity
             android:name="com.smart.taxi.activities.ContainerActivity"
+            android:alwaysRetainTaskState="true"
             android:label="@string/title_activity_container"
             android:launchMode="singleTop"
+            android:multiprocess="false"
             android:noHistory="false"
             android:screenOrientation="portrait" >
         </activity>
@@ -191,7 +196,7 @@
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
 
-                <category android:name="com.smart.taxi" />
+                <category android:name="com.smarttaxi.client" />
             </intent-filter>
         </receiver>
 
@@ -206,8 +211,48 @@
         </activity>
         <activity
             android:name="com.smart.taxi.BarcodeActivity"
-            android:label="@string/title_activity_barcode" 
-            android:screenOrientation="portrait">
+            android:label="@string/title_activity_barcode"
+            android:screenOrientation="portrait" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.smart.taxi.activities.ContainerActivity" />
+        </activity>
+        <activity
+            android:name="com.smarttaxi.client.PostFBLoginActivity"
+            android:label="@string/title_activity_post_fblogin" >
+        </activity>
+        <activity
+            android:name="com.smarttaxi.client.SignUpActivity"
+            android:label="@string/title_activity_sign_up"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.smart.taxi.activities.SplashActivity" />
+        </activity>
+        <activity
+            android:name="com.smarttaxi.client.VerifyAccountActivuty"
+            android:label="@string/title_activity_verify_account_activuty"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.smarttaxi.client.SignUpActivity" />
+        </activity>
+        <activity
+            android:name="com.smarttaxi.client.ListCardsActivity"
+            android:label="@string/title_activity_list_cards" 
+			android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.smart.taxi.activities.ContainerActivity" />
+        </activity>
+        <activity
+            android:name="com.smarttaxi.client.AddCardsActivity"
+            android:label="@string/title_activity_add_cards"  
+			android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.smart.taxi.activities.ContainerActivity" />

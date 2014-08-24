@@ -9,7 +9,6 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin" >
-
     
 	<ImageView
         android:id="@+id/imgSplashLogo"
@@ -26,6 +25,7 @@
         android:hint="Username"
         style="@style/FormTextInputStyle"
         android:inputType="textEmailAddress"
+        android:text="stax3@mailismagic.com"
         >
 
         <requestFocus />
@@ -40,14 +40,36 @@
         android:hint="Password"
         style="@style/FormTextInputStyle"
         android:inputType="textPassword"
+        android:text="qqqq"
         />
 
-    <Button
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:orientation="horizontal">
+        <Button
+	        android:id="@+id/btnRegister"
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="16dp"
+	        android:background="#4d4d4d"
+	        android:text="Register"
+	        android:layout_weight="1"
+	        android:textColor="#ffffff" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.1" />
+        
+        <Button
         android:id="@+id/btnLogin"
-        android:layout_width="fill_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:layout_marginTop="16dp"
         android:background="#4d4d4d"
         android:text="Login"
         android:textColor="#ffffff" />
+    </LinearLayout>
+
 </LinearLayout>

@@ -32,10 +32,10 @@ public class BarcodeActivity extends Activity {
 		}
 	}
 	
-	@Override
+	/*@Override
 	public void onBackPressed()
 	{
 		finish();
-	}
+	}*/
 
 }

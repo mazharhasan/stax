@@ -42,7 +42,7 @@
                     android:text="@string/label_first_name" />
 
                  <com.smart.taxi.components.CFEditText
-                    android:id="@+id/txtFirstName"
+                    android:id="@+id/txtSignUpFirstName"
                     android:singleLine="true"
                     android:layout_width="match_parent"
 			        android:layout_height="wrap_content"

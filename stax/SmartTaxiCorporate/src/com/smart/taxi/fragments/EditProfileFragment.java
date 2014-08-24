@@ -61,7 +61,7 @@ public class EditProfileFragment extends BaseFragment implements OnCheckedChange
 		//setContentView(R.layout.activity_edit_profile);
 		if(SplashActivity.isLoggedIn())
 		{
-			tfFirstName = (CFEditText)rootView.findViewById(R.id.txtFirstName);
+			tfFirstName = (CFEditText)rootView.findViewById(R.id.txtSignUpFirstName);
 			tfLastName = (CFEditText)rootView.findViewById(R.id.txtLastName);
 			tfPhone = (CFEditText)rootView.findViewById(R.id.txtPhone);
 			btnUpdateProfile = ((Button)rootView.findViewById(R.id.btnUpdateProfile));

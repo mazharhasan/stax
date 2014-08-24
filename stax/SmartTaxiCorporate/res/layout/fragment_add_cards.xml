@@ -1,0 +1,108 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.smarttaxi.client.AddCardsActivity$PlaceholderFragment" >
+
+    <com.smart.taxi.components.CFTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/FormLabelsWithPaddingOnTop"
+        android:text="@string/label_card_title" />
+
+    <com.smart.taxi.components.CFEditText
+        android:id="@+id/txtCardTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:singleLine="true"
+        android:inputType="textPersonName|textAutoCorrect"
+        android:maxLength="25"
+        android:hint="@string/hint_title_on_card" >
+
+        <requestFocus />
+    </com.smart.taxi.components.CFEditText>
+    
+    <com.smart.taxi.components.CFTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/FormLabelsWithPaddingOnTop"
+        android:text="@string/label_card_number" />
+    <com.smart.taxi.components.CFEditText
+        android:id="@+id/txtCardNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        android:digits="0123456789 _"
+        android:maxLength="19"
+        android:singleLine="true"
+        android:nextFocusDown="@+id/txtCardMonth"
+        android:hint="@string/hint_credict_card_number" />
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <com.smart.taxi.components.CFTextView
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="2.5"
+	        style="@style/FormLabelsWithPaddingOnTop"
+	        android:text="@string/label_expiry" />
+        <com.smart.taxi.components.CFTextView
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1.5"
+	        style="@style/FormLabelsWithPaddingOnTop"
+	        android:text="@string/label_security_code" />
+    </LinearLayout>
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <com.smart.taxi.components.CFEditText
+	        android:id="@+id/txtCardMonth"
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:ems="10"
+	        android:maxLength="2"
+	        android:inputType="number"
+	        android:layout_weight="1.25"
+	        android:nextFocusDown="@+id/txtCardYear"
+	        android:hint="@string/hint_mm" />
+        <com.smart.taxi.components.CFEditText
+	        android:id="@+id/txtCardYear"
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:ems="10"
+	        android:maxLength="2"
+	        android:inputType="number"
+	        android:layout_weight="1.25"
+	        android:nextFocusDown="@+id/txtCCV"
+	        android:hint="@string/hint_yy" />
+        <com.smart.taxi.components.CFEditText
+	        android:id="@+id/txtCCV"
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:ems="10"
+	        android:maxLength="3"
+	        android:inputType="number"
+	        android:layout_weight="1.5"
+	        android:hint="@string/hint_ccv" />
+        
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnAddCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_add_card" />
+
+</LinearLayout>

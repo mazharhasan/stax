@@ -1,0 +1,41 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_gravity="center_vertical"
+    android:background="#888"
+    android:orientation="horizontal"
+    android:showDividers="middle" >
+
+    <ImageView
+        android:padding="10dp"
+        android:id="@+id/imgCardType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/desc_card_type_icon"
+         />
+    
+    <com.smart.taxi.components.CFTextView
+        android:id="@+id/txtCardNumber"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:padding="10dp"
+        android:paddingTop="25dp"
+        android:textColor="#fff"
+        android:textSize="18sp"
+        android:text="" />
+    <View 
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        android:background="#fefefe"/>
+    
+    <ImageButton
+        android:id="@+id/btnDeleteCards"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        style="?android:attr/buttonBarButtonStyle"
+        android:src="@drawable/dustbin" 
+        android:contentDescription="@string/desc_delete_card_button"/>
+    
+</LinearLayout>

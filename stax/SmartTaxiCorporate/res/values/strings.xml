@@ -65,13 +65,22 @@
     <string name="label_total">Total</string>
     <string name="title_activity_container">Smart Taxi</string>
 
-    <string-array name="navigation_labels">
+    <string-array name="navigation_labels_for_corporate">
         <item>Find a ride</item>
         <item>Upcoming trips</item>
         <item>Trip history</item>
         <item>Profile</item>
-        <item>Change tip</item>
         <item>Barcode</item>
+        <item>Change tip</item>
+        <item>Logout</item>
+    </string-array>
+    <string-array name="navigation_labels_for_customers">
+        <item>Find a ride</item>
+        <item>Upcoming trips</item>
+        <item>Trip history</item>
+        <item>Profile</item>
+        <item>Cards</item>
+        <item>Change tip</item>
         <item>Logout</item>
     </string-array>
 
@@ -105,5 +114,35 @@
     <string name="label_enter_file_number_here">Enter file number here:</string>
     <string name="label_enter_your_file_number_here">Enter your file number here...</string>
     <string name="label_enter_message_for_driver_here">Enter message for driver here...</string>
+    <string name="title_activity_post_fblogin">PostFBLoginActivity</string>
+    <string name="title_activity_sign_up">Register</string>
+    <string name="button_create_account">Create account</string>
+    <string name="hint_first_name_">First name...</string>
+    <string name="hint_last_name">Last name...</string>
+    <string name="hint_email_username">Email (username)</string>
+    <string name="hint_password">Password...</string>
+    <string name="hint_phone_number">Phone number...</string>
+    <string name="button_login_using_facrbook">Login using Facebook</string>
+    <string name="title_activity_verify_account_activuty">Verify Account</string>
+    <string name="label_verify_account_desc">You must have received a verification code on the email address you provided at the time of registration. Please enter that code in the field below to verify your account.</string>
+    <string name="button_verify_account">Verify account</string>
+    <string name="title_activity_list_cards">Payment options</string>
+    <string name="title_activity_add_cards">Add a card</string>
+    <string name="label_card_title">Card title</string>
+    <string name="label_card_number">Card number</string>
+    <string name="label_expiry">Expiry</string>
+    <string name="label_security_code">Security code</string>
+    <string name="hint_title_on_card">Name on card...</string>
+    <string name="hint_credict_card_number">Credict card number...</string>
+    <string name="hint_ccv">CCV</string>
+    <string name="hint_yy">YY</string>
+    <string name="hint_mm">MM</string>
+    <string name="btn_add_card">Add card</string>
+    <string name="desc_card_type_icon">Card type icon</string>
+    <string name="desc_delete_card_button">Delete card button</string>
+    <string name="label_trip_details">TRIP DETAILS</string>
+    <string name="label_driver_s_details">DRIVER\'S DETAILS</string>
+    <string name="label_payment_details">PAYMENT DETAILS</string>
+    <string name="btn_confirm_booking">CONFIRM BOOKING</string>
 
 </resources>

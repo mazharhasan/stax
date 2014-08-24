@@ -32,7 +32,7 @@
         android:showAsAction="collapseActionView"
         android:title="@string/title_activity_change_tip"/>
     <item
-        android:id="@+id/action_confirmTrip"
+        android:id="@+id/txtSignUpLastNames"
         android:orderInCategory="100"
         android:showAsAction="collapseActionView"
         android:title="@string/title_activity_confirm_trip"/>

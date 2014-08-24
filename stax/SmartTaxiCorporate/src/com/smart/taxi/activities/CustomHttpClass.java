@@ -5,6 +5,10 @@ import java.util.List;
 
 import android.os.AsyncTask;
 import android.os.Build;
+import ch.boye.httpclientandroidlib.HttpResponse;
+import ch.boye.httpclientandroidlib.client.HttpClient;
+import ch.boye.httpclientandroidlib.client.methods.HttpGet;
+import ch.boye.httpclientandroidlib.impl.client.DefaultHttpClient;
 import ch.boye.httpclientandroidlib.message.BasicNameValuePair;
 
 import com.google.gson.JsonArray;
@@ -33,6 +37,8 @@ public class CustomHttpClass implements HttpResponseListener, HttpRequestListene
 	{
 		return runPostWithURL(sender, apiMethodName, args, requestBodyObject, isArray, false);
 	}
+	
+	
 	
 	private static HttpAsyncTask runPostWithURL(final HttpResponseListener sender,
 			final String apiMethodName, 
@@ -220,5 +226,7 @@ public class CustomHttpClass implements HttpResponseListener, HttpRequestListene
 		List<BasicNameValuePair> params = new ArrayList<BasicNameValuePair>();
 		return runPostWithURL(sender, apiMethodName, params, requestBodyObject, isArray, true);
 	}
+	
+	
 
 }

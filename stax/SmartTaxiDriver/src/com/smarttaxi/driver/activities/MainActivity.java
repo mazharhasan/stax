@@ -1245,11 +1245,13 @@ public class MainActivity extends ActionBarActivity implements
 
 												
 												finish();
-
-												pagerDialog
-														.dismissAllowingStateLoss();
-												pagerDialog.dismiss();
-												pagerDialog = null;
+												if(pagerDialog != null)
+												{
+													pagerDialog
+															.dismissAllowingStateLoss();
+													pagerDialog.dismiss();
+													pagerDialog = null;
+												}
 												
 												
 											}
