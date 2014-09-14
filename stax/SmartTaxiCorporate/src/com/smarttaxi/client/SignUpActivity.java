@@ -75,6 +75,7 @@ public class SignUpActivity extends Activity {
 		private RadioButton rbFemale;
 		private Button btnCreateAccount;
 		private String gender;
+		private Button btnFBLogin;
 
 		public PlaceholderFragment() {
 		}
@@ -93,6 +94,10 @@ public class SignUpActivity extends Activity {
 		}
 		private void initUI() {
 			// TODO Auto-generated method stub
+			btnFBLogin = (Button) rootView.findViewById(R.id.btnFBLogin);
+			btnFBLogin.setCompoundDrawablesWithIntrinsicBounds(R.drawable.fb_icon, 0, 0, 0);
+			btnFBLogin.setCompoundDrawablePadding(getResources().getDimensionPixelOffset(R.dimen.fb_icon_padding));
+			btnFBLogin.setOnClickListener(this);
 			btnCreateAccount = (Button) rootView.findViewById(R.id.btnCreateAccount);
 			btnCreateAccount.setOnClickListener(this);
 			txtFirstName = (CFEditText) rootView.findViewById(R.id.txtSignUpFirstName);
@@ -150,12 +155,17 @@ public class SignUpActivity extends Activity {
 						params.add(new BasicNameValuePair("group_id","4"));
 						params.add(new BasicNameValuePair("gender",gender));
 						btnCreateAccount.setOnClickListener(null);
+						CommonUtilities.hideSoftKeyboard(getActivity());
 						LoaderHelper.showLoader(getActivity(), "Please wait while we sign you up...", "");
 						CustomHttpClass.runPostService(this, APIConstants.METHOD_POST_REGISTER_USER, params, false, false);
 					}else{
 						NetworkAvailability.showNoConnectionDialog(getActivity());
 					}
 				}
+				break;
+				
+			case R.id.btnFBLogin:
+				CommonUtilities.displayAlert(getActivity(), "Facebook login will be available soon", "Coming soon", "Ok", "", false);
 				break;
 				
 			default:

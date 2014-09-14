@@ -16,10 +16,12 @@ package com.smart.taxi.utils;
  */
 
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.view.inputmethod.InputMethodManager;
 
 import com.smart.taxi.constants.APIConstants;
 
@@ -91,5 +93,12 @@ public final class CommonUtilities {
     	Dialog dialog = builder.create();
     	dialog.show();
     	return dialog;
+    }
+    
+    public static void hideSoftKeyboard(Activity activity) {
+        if(activity.getCurrentFocus()!=null) {
+            InputMethodManager inputMethodManager = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
+        }
     }
 }

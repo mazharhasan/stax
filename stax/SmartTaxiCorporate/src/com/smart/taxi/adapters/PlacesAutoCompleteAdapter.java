@@ -27,7 +27,7 @@ public class PlacesAutoCompleteAdapter extends ArrayAdapter<String> implements F
     private static final String TYPE_AUTOCOMPLETE = "/autocomplete";
     private static final String OUT_JSON = "/json";
 
-    private static final String API_KEY = "AIzaSyBGaV82pAT92kN6fybyA5W_Rhe01_mqGwg";
+    private static final String API_KEY = "AIzaSyBBxHuIp1b8FdoD3oG47TmIZ9UikDjjcJ0";
 
     public PlacesAutoCompleteAdapter(Context context, int textViewResourceId) {
         super(context, textViewResourceId);

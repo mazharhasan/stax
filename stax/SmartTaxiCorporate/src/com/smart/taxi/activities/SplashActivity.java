@@ -11,6 +11,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -35,6 +36,7 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -73,7 +75,7 @@ public class SplashActivity extends BaseActivity {
 	private EditText tfEmail;
 	private EditText tfPassword;
 	private Button btnLogin;
-	private static SplashActivity splashActivity;
+	public static SplashActivity splashActivity;
 	private GoogleCloudMessaging gcm;
 	Context context;
 	protected String regid;
@@ -90,6 +92,7 @@ public class SplashActivity extends BaseActivity {
 	private Bundle bundle;
 	private Button btnRegister;
 	private static boolean launched = false;
+	private static long launchTime = 0;
 	
 	public SplashActivity()
 	{
@@ -197,6 +200,13 @@ public class SplashActivity extends BaseActivity {
 		}*/
     }
     
+    public void hideSoftKeyboard() {
+        if(getCurrentFocus()!=null) {
+            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        }
+    }
+    
     public void getRequest(TextView txtResult, EditText txtUrl){
         String url = txtUrl.getText().toString();
         HttpClient client = new DefaultHttpClient();
@@ -257,13 +267,14 @@ public class SplashActivity extends BaseActivity {
 			if(NetworkAvailability.IsNetworkAvailable(getBaseContext()))
 			{
 				LoaderHelper.showLoader(this, "Logging in...", "");
-				btnLogin.setOnClickListener(null);
+				//btnLogin.setOnClickListener(null);
 				List<BasicNameValuePair> params = new ArrayList<BasicNameValuePair>();
 				params.add(new BasicNameValuePair(
 						APIConstants.KEY_USERNAME, tfEmail.getText().toString()));
 				//Utils.validateEmptyString(tfEmail.getText().toString().trim())));
 				params.add(new BasicNameValuePair(
 						APIConstants.KEY_PASSWORD, tfPassword.getText().toString()));
+				CommonUtilities.hideSoftKeyboard(this);
 				CustomHttpClass.runPostService(this, APIConstants.METHOD_LOGIN, params, false, false);
 				//HttpAsyncTask htask =  runLoginService(tfEmail.getText().toString(), tfPassword.getText().toString(),this);
 			}else{
@@ -302,11 +313,11 @@ public class SplashActivity extends BaseActivity {
 		boolean isInValid = true;
 		String email = tfEmail.getText().toString();
 		String password = tfPassword.getText().toString();
-		isInValid = Utils.isEmptyOrNull(email);
+		isInValid = Utils.isEmptyOrNull(email) || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
 		
 		if(isInValid)
 		{
-			tfEmail.setError("Please provide your email address");
+			tfEmail.setError("Please provide a valid email address");
 			tfEmail.requestFocus();
 			//CommonUtilities.displayAlert(this, "Please provide your email address.", "Missing credentials!", "", "Close");
 			return false;
@@ -325,7 +336,7 @@ public class SplashActivity extends BaseActivity {
 
 	@Override
 	public void onResponse(CustomHttpResponse object) {
-		btnLogin.setOnClickListener(null);
+		//btnLogin.setOnClickListener(null);
 		LoaderHelper.hideLoaderSafe();
 		if(object.getMethodName() == APIConstants.METHOD_LOGIN)
 		{
@@ -418,7 +429,7 @@ public class SplashActivity extends BaseActivity {
 		
 	}
 
-	private void startAddCardsActivity() {
+	public void startAddCardsActivity() {
 		Intent addCardIntent = new Intent(this, AddCardsActivity.class);
 		addCardIntent.putExtra(APIConstants.IS_FIRST_CARD, "true");
 		startActivityForResult(addCardIntent,  999);
@@ -765,7 +776,7 @@ public class SplashActivity extends BaseActivity {
 		{
 			Log.e("Loader hide error", "loder doesnt exists");
 		}
-		if(!launched )
+		if(SplashActivity.launchTime == 0 || SplashActivity.launchTime + 1000 < (new Date()).getTime())
 		{
 			Intent mainActivityLaunchIntent = new Intent(getApplicationContext(), ContainerActivity.class);
 			mainActivityLaunchIntent.setFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT | Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -774,7 +785,7 @@ public class SplashActivity extends BaseActivity {
 				Log.i("Putting bundle as ", bundle.toString());
 				mainActivityLaunchIntent.putExtra("score",bundle.get("to_courage").toString());
 			}
-			SplashActivity.launched = true;
+			SplashActivity.launchTime = (new Date()).getTime();
 			startActivityForResult(mainActivityLaunchIntent, 100);
 			overridePendingTransition(R.anim.slide_left, R.anim.slide_left);
 		}

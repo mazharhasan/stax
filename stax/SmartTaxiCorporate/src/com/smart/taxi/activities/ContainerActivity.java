@@ -183,7 +183,11 @@ public class ContainerActivity extends BaseActivity {
     	{
     		selectItem(0);
     	}else{
-    		super.onBackPressed();
+    		if(lastFragment instanceof FindARideFragment && FindARideFragment.isShowingMarkers)
+    		{
+    			((FindARideFragment)lastFragment).resetScreen();
+    		}
+    		//super.onBackPressed();
     	}
     }
 

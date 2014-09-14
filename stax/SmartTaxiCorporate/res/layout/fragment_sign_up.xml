@@ -139,6 +139,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:layout_marginTop="16dp"
+            android:textColor="#fff"
+            android:background="#2D609A"
             android:text="@string/button_login_using_facrbook" />
     </LinearLayout>
 

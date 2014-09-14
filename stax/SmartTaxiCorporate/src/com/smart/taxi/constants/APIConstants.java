@@ -7,7 +7,7 @@ public final class APIConstants {
 	public static final int SUCESS_CODE = 0;
 	public static final int UPDATED_CODE = 5401;
 	
-	public static final String API_END_POINT = "http://api.smarttaxi.ca/services_v2/stax/user/api/";//"http://api.smarttaxi.ca/services/stax/user/api/";
+	public static final String API_END_POINT = "http://api.smarttaxi.ca/services/stax/user/api/";//"http://api.smarttaxi.ca/services_v2/stax/user/api/";//"http://api.smarttaxi.ca/services/stax/user/api/";
 	public static final String METHOD_UPDATE_DRIVE_LOCATION = "add_driver_location.json";
 	public static final String METHOD_LOGIN = "verify_login.json";
 	public static final String METHOD_CREATE_JOURNEY = "create_journey.json";
@@ -34,6 +34,7 @@ public final class APIConstants {
 	public static final String METHOD_POST_REGISTER_USER = "verify_signup.json";
 	public static final String METHOD_POST_ADD_CARD = "add_card.json";
 	public static final String METHOD_POST_LOAD_CUSTOMER_CABS = "get_cabs_around_me.json";
+	public static final String METHOD_POST_DELETE_CARD = "delete_card.json";
 	
 	
 	

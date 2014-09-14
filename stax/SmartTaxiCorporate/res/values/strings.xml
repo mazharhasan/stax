@@ -144,5 +144,6 @@
     <string name="label_driver_s_details">DRIVER\'S DETAILS</string>
     <string name="label_payment_details">PAYMENT DETAILS</string>
     <string name="btn_confirm_booking">CONFIRM BOOKING</string>
+    <string name="label_promo_code">Promo code...</string>
 
 </resources>

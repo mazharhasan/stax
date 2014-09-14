@@ -5,9 +5,12 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -109,7 +112,7 @@ public class TripRequestFragment extends BaseFragment implements
 	private void initUI() {
 		try{
 			txtTripStatus = (CFTextView) rootView.findViewById(R.id.txtTripStatus);
-			txtDriverStatus = (CFTextView) rootView.findViewById(R.id.txtDriverStatus);
+			//txtDriverStatus = (CFTextView) rootView.findViewById(R.id.txtDriverStatus);
 			btnCancelTrip = (Button) rootView.findViewById(R.id.btnCancelTrip);
 			btnCancelTrip.setOnClickListener(this);
 			//Log.e("Trip status", SplashActivity.getTripNewDetails().getTripStatus());
@@ -147,9 +150,16 @@ public class TripRequestFragment extends BaseFragment implements
 			googleMap = mapFragment.getMap();
 			if (googleMap == null)
 				return;
+			WindowManager wm = (WindowManager) getActivity().getSystemService(Context.WINDOW_SERVICE);
+			Display display = wm.getDefaultDisplay();
+			Point size = new Point();
+			display.getSize(size);
+			int paddingTop = 100;
+			if(size.y > 1280)
+				paddingTop = 140;
 			googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 			googleMap.setMyLocationEnabled(false);
-			googleMap.setPadding(10, 10, 10, 100);
+			googleMap.setPadding(10, 10, 8, paddingTop);
 			googleMap.getUiSettings().setZoomControlsEnabled(true);
 
 		}
@@ -358,7 +368,7 @@ public class TripRequestFragment extends BaseFragment implements
 								}*/
 								googleMap.addPolyline(new PolylineOptions()
 							     .addAll(positions)
-							     .width(5)
+							     .width(12)
 							     .color(polyLineColors[i%5]).geodesic(true));
 							}
 						}

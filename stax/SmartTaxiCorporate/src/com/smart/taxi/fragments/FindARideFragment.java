@@ -29,11 +29,13 @@ import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.WindowManager.LayoutParams;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AutoCompleteTextView;
@@ -77,6 +79,7 @@ import com.smart.taxi.activities.SplashActivity;
 import com.smart.taxi.adapters.PlacesAutoCompleteAdapter;
 import com.smart.taxi.components.CFEditText;
 import com.smart.taxi.components.CFTextView;
+import com.smart.taxi.components.ConfirmTripDialogue;
 import com.smart.taxi.components.CustomTripDialogFragment;
 import com.smart.taxi.components.renderers.DriverInfoWindowAdapter;
 import com.smart.taxi.constants.APIConstants;
@@ -118,6 +121,7 @@ public class FindARideFragment extends BaseFragment implements
 	String defaultOptionalMessage = "";
 	private boolean isCustomAddress = false;
 	public static Map<Marker,Cab> markers;
+	public static boolean isShowingMarkers;
 	private Button btnPickUp;
 	private Button btnPickUpOptions;
 	private ImageButton btnReset;
@@ -160,14 +164,14 @@ public class FindARideFragment extends BaseFragment implements
 			try{
 				currentLatLng = new LatLng(ServiceLocation.curLocation.getLatitude(),ServiceLocation.curLocation.getLongitude());
 			}catch(Exception ex){}
-		}*/
+		}
 		if(googleMap == null)
 		{
 			setupMap();
 		}else{
 			//moveToMyLocation(2);
 			googleMap.setOnMyLocationChangeListener(this);
-		}
+		}*/
 	}
 
 	@Override
@@ -223,6 +227,7 @@ public class FindARideFragment extends BaseFragment implements
 		    autoCompView.setAdapter(new PlacesAutoCompleteAdapter(getActivity(), R.layout.list_item));
 		    autoCompView.setOnItemClickListener(this);
 		    autoCompView.setHint("");
+		    autoCompView.setText("");
 		    //tfAddress = (CFTextView)rootView.findViewById(R.id.txtAddressFindRide);
 		    //tfAddress.setVisibility(View.GONE);
 		} catch (Exception e) {
@@ -263,9 +268,18 @@ public class FindARideFragment extends BaseFragment implements
 			googleMap = mapFragment.getMap();
 			if (googleMap == null)
 				return;
+			
+			WindowManager wm = (WindowManager) getActivity().getSystemService(Context.WINDOW_SERVICE);
+			Display display = wm.getDefaultDisplay();
+			Point size = new Point();
+			display.getSize(size);
+			int paddingTop = 100;
+			if(size.y > 1280)
+				paddingTop = 160;
+			Log.e("Size:", size.toString());
 			googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 			googleMap.setMyLocationEnabled(true);
-			googleMap.setPadding(0,170,0,0);
+			googleMap.setPadding(0,paddingTop,0,0);
 			googleMap.setMyLocationEnabled(true);
 			googleMap.setOnMapClickListener(this);
 			googleMap.setOnMyLocationButtonClickListener(this);
@@ -319,9 +333,13 @@ public class FindARideFragment extends BaseFragment implements
 								.snippet("")
 								.icon(BitmapDescriptorFactory
 										.fromResource(R.drawable.map_user_icon)));
+		userLocationMarker.setDraggable(false);
+
 		moveToMyLocation(1);
 		loadAddress(location);
 	}
+	
+	
 
 	@Override
 	public void onClick(View buttonSender) {
@@ -396,14 +414,21 @@ public class FindARideFragment extends BaseFragment implements
 		
 	}
 
-	private void resetScreen() {
+	public void resetScreen() {
+		FindARideFragment.isShowingMarkers = false;
 		cabLatLng = null;
 		resetMarkers();
+		autoCompView.setText("");
 		setDefaultTripDetails(new TripDetails());
 		SplashActivity.isTripRequested = false;
 		SplashActivity.setTripNewDetails(null);
-		placeUserLocationMarker(15, new LatLng(googleMap.getMyLocation().getLatitude(),googleMap.getMyLocation().getLongitude()));
-		moveToMyLocation(2);
+		if(googleMap.getMyLocation() != null)
+		{
+			placeUserLocationMarker(15, new LatLng(googleMap.getMyLocation().getLatitude(),googleMap.getMyLocation().getLongitude()));
+		}else{
+			placeUserLocationMarker(15, null);
+		}
+		//moveToMyLocation(2);
 		toggleButtons(true);
 		isCustomAddress = false;
 		
@@ -467,6 +492,7 @@ public class FindARideFragment extends BaseFragment implements
 	@Override
 	public void onResponse(CustomHttpResponse response)
 	{
+		LoaderHelper.hideLoaderSafe();
 		if(response != null)
 		{
 			if(response.getMethodName() == APIConstants.METHOD_POST_FIND_STANDS_AROUND_ME)
@@ -489,7 +515,6 @@ public class FindARideFragment extends BaseFragment implements
 					||
 					response.getMethodName() == APIConstants.METHOD_POST_LOAD_CUSTOMER_CABS)
 			{
-				LoaderHelper.hideLoaderSafe();
 				if(hasPostCheckedInResults)
 				{
 					if(response.getStatusCode() == 0)
@@ -543,6 +568,7 @@ public class FindARideFragment extends BaseFragment implements
 							int padding = 140; // offset from edges of the map in pixels
 							CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
 							googleMap.animateCamera(cu);
+							FindARideFragment.isShowingMarkers = true;
 						}else{
 							resetScreen();
 							CommonUtilities.displayAlert(getActivity(), "Can not find any available taxi near by,  please try again", "No taxis around", "Retry", "Close", true);
@@ -586,6 +612,7 @@ public class FindARideFragment extends BaseFragment implements
 								Log.e(location.get("lat").getAsString(), location.get("lng").getAsString());
 								LatLng newLocation = new LatLng(location.get("lat").getAsDouble(), location.get("lng").getAsDouble());
 								onMapClick(newLocation);
+								autoCompView.setSelection(0);
 							}
 						}
 							
@@ -685,6 +712,10 @@ public class FindARideFragment extends BaseFragment implements
 		{
 			tripDetails.setDriverLatLng(cabLatLng);
 		}
+		if(!SplashActivity.loggedInUser.isCorporateUser())
+		{
+			tripDetails.setToken(values.get("token"));
+		}
 		SplashActivity.setTripNewDetails(tripDetails);
 		//SplashActivity.isTripRequested = true;
 	}
@@ -692,6 +723,7 @@ public class FindARideFragment extends BaseFragment implements
 	@Override
 	public void onException(CustomHttpException exception)
 	{
+		LoaderHelper.hideLoaderSafe();
 		if(exception.getMethodName() == APIConstants.METHOD_POST_FIND_STANDS_AROUND_ME)
 		{
 			//clean up
@@ -813,8 +845,8 @@ public class FindARideFragment extends BaseFragment implements
 		         * Format the first line of address (if available),
 		         * city, and country name.
 		         */
-		        if(!address.getCountryName().toLowerCase().equals("canada"))
-		        	return "";
+		        /*if(!address.getCountryName().toLowerCase().equals("canada"))
+		        	return "";*/
 		        FindARideFragment.currentAddress = String.format(
 		                "%s, %s, %s %s",
 		                // If there's a street address, add it
@@ -843,8 +875,12 @@ public class FindARideFragment extends BaseFragment implements
 			{
 				//tfAddress.setText(address);
 				if(autoCompView != null)
-					autoCompView.setHint(address);
+				{
+					//autoCompView.setText("");
+					autoCompView.setText(address);
+				}
 			}else{
+				autoCompView.setText("");
 				autoCompView.setHint("Type address...");
 			}
 			/*else
@@ -941,7 +977,7 @@ public class FindARideFragment extends BaseFragment implements
 		{
 			showCorporateDialogue(cab.getDriver().getCabID());
 		}else{
-			showConfirmBookingDialogue(cab.getDriver().getCabID());
+			showConfirmBookingDialogue(cab);
 		}
 		//
 		/*StringBuilder urlString = new StringBuilder();
@@ -963,9 +999,86 @@ public class FindARideFragment extends BaseFragment implements
 
 	}
 
-	private void showConfirmBookingDialogue(String cabID) {
-		//Dialog dialog=new Dialog(this,android.R.style.Theme_Dark_NoTitleBar_FullScreen)
-		startActivity(new Intent(getActivity(), ConfirmTripActivity.class));
+	private void showConfirmBookingDialogue(Cab cab) {
+		/*
+		 * &cab_id=16&payment_option=card&
+		 * payment_status=authorized&payment_type=webservice&payment_detail=0&token=7318552101012683
+		 */
+		/*Date currentDate = new Date();
+		SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		
+		String pickUpTime = ft.format(currentDate);
+		List<BasicNameValuePair> params = new ArrayList<BasicNameValuePair>();
+		params.add(new BasicNameValuePair("child_seats", (defaultTripDetails.isCustomTrip())?defaultTripDetails.getNumChildSeats():"0"));
+		params.add(new BasicNameValuePair("pickup_time", (defaultTripDetails.isCustomTrip())?defaultTripDetails.getPikcupTime():pickUpTime));
+		params.add(new BasicNameValuePair("max_no_of_passengers", (defaultTripDetails.isCustomTrip())?defaultTripDetails.getNumPassengers():"1"));
+		params.add(new BasicNameValuePair("no_of_bags", (defaultTripDetails.isCustomTrip())?defaultTripDetails.getNumBags():"0"));
+		params.add(new BasicNameValuePair("pick_address", FindARideFragment.currentAddress));
+		params.add(new BasicNameValuePair("pickup_lat", String.valueOf(requestPosition.latitude)));
+		params.add(new BasicNameValuePair("pickup_lng", String.valueOf(requestPosition.longitude)));
+		params.add(new BasicNameValuePair("journey_option", "solo"));
+		params.add(new BasicNameValuePair("optional_message", ""));
+		params.add(new BasicNameValuePair("user_id", SplashActivity.loggedInUser.getId()));
+		params.add(new BasicNameValuePair("journey_type", "solo"));
+		params.add(new BasicNameValuePair("group_id", "4"));
+		params.add(new BasicNameValuePair("cab_id", pinDialog.getCabId()));
+		params.add(new BasicNameValuePair("payment_option", "card"));
+		params.add(new BasicNameValuePair("payment_status", "authorized"));
+		params.add(new BasicNameValuePair("payment_type", "webservice"));
+		params.add(new BasicNameValuePair("payment_detail", "0"));
+		//params.add(new BasicNameValuePair("token", value))*/
+		//createTripObjet(params, false);
+
+			//CustomHttpClass.runPostService(this, APIConstants.METHOD_CREATE_JOURNEY, params, true, false);
+		
+		ConfirmTripDialogue dialog = new ConfirmTripDialogue(cab, 
+										FindARideFragment.currentAddress,
+										(defaultTripDetails.isCustomTrip())?defaultTripDetails.getNumPassengers():"1",
+										(defaultTripDetails.isCustomTrip())?defaultTripDetails.getNumBags():"0");
+		dialog.setParent(FindARideFragment.this);
+		dialog.show(getFragmentManager(), "ConfirmTrip");
+	}
+	
+	public void customerApprovalResult(String cardNumber, String cabId)
+	{
+		String token = "";
+		Log.e("Card number received as:", cardNumber);
+		for(int i = 0; i < SplashActivity.loggedInUser.getUserCards().size(); i++)
+		{
+			if(SplashActivity.loggedInUser.getUserCards().get(i).getCardNumber().equals(cardNumber))
+			{
+				token = SplashActivity.loggedInUser.getUserCards().get(i).getCardToken();
+				Log.e("Token received as:", token);
+				Date currentDate = new Date();
+				SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				
+				String pickUpTime = ft.format(currentDate);
+				List<BasicNameValuePair> params = new ArrayList<BasicNameValuePair>();
+				params.add(new BasicNameValuePair("child_seats", (defaultTripDetails.isCustomTrip())?defaultTripDetails.getNumChildSeats():"0"));
+				params.add(new BasicNameValuePair("pickup_time", (defaultTripDetails.isCustomTrip())?defaultTripDetails.getPikcupTime():pickUpTime));
+				params.add(new BasicNameValuePair("max_no_of_passengers", (defaultTripDetails.isCustomTrip())?defaultTripDetails.getNumPassengers():"1"));
+				params.add(new BasicNameValuePair("no_of_bags", (defaultTripDetails.isCustomTrip())?defaultTripDetails.getNumBags():"0"));
+				params.add(new BasicNameValuePair("pick_address", FindARideFragment.currentAddress));
+				params.add(new BasicNameValuePair("pickup_lat", String.valueOf(requestPosition.latitude)));
+				params.add(new BasicNameValuePair("pickup_lng", String.valueOf(requestPosition.longitude)));
+				params.add(new BasicNameValuePair("journey_option", "solo"));
+				params.add(new BasicNameValuePair("optional_message", ""));
+				params.add(new BasicNameValuePair("user_id", SplashActivity.loggedInUser.getId()));
+				params.add(new BasicNameValuePair("journey_type", "solo"));
+				params.add(new BasicNameValuePair("group_id", "4"));
+				params.add(new BasicNameValuePair("cab_id", cabId));
+				params.add(new BasicNameValuePair("payment_option", "card"));
+				params.add(new BasicNameValuePair("payment_status", "authorized"));
+				params.add(new BasicNameValuePair("payment_type", "webservice"));
+				params.add(new BasicNameValuePair("payment_detail", "0"));
+				params.add(new BasicNameValuePair("token", token));
+				createTripObjet(params, false);
+				LoaderHelper.showLoader(getActivity(), "Creating trip...", "");
+				CustomHttpClass.runPostService(this, APIConstants.METHOD_CREATE_JOURNEY, params, true, false);
+				break;
+			}
+		}
+		
 	}
 
 	public TripDetails getDefaultTripDetails() {
@@ -994,10 +1107,12 @@ public class FindARideFragment extends BaseFragment implements
 
 	private void reverseLookUp(String str) throws ClientProtocolException, IOException {
 		// TODO Auto-generated method stub
+		CommonUtilities.hideSoftKeyboard(getActivity());
 		LoaderHelper.showLoader(getActivity(), "Locating address on map...", "");
 		String url = "https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyBBxHuIp1b8FdoD3oG47TmIZ9UikDjjcJ0&address=" + URLEncoder.encode(str, "UTF-8");
 		CustomHttpClass.runDirectPostService(this, url, null, true, false);
 	}
+	
 }
 
 

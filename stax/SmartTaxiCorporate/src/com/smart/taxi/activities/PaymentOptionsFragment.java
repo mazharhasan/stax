@@ -2,6 +2,7 @@ package com.smart.taxi.activities;
 
 import java.util.List;
 
+import android.app.Activity;
 import android.app.ListFragment;
 import android.content.Context;
 import android.content.Intent;
@@ -50,7 +51,8 @@ public class PaymentOptionsFragment extends ListFragment implements OnClickListe
 	private void loadCards() {
 		if(SplashActivity.isLoggedIn() && SplashActivity.loggedInUser.hasCards())
 		{
-			ListAdapter cards = new CardsAdapter(getActivity(), SplashActivity.loggedInUser.getUserCards());
+			CardsAdapter cards = new CardsAdapter(getActivity(), SplashActivity.loggedInUser.getUserCards());
+			cards.activity = getActivity();
 			setListAdapter(cards);
 		}else{
 			
@@ -65,9 +67,11 @@ public class PaymentOptionsFragment extends ListFragment implements OnClickListe
         //startActivity(new Intent(this, demo.activityClass));
     }
 	
-	private static class CardsAdapter extends ArrayAdapter<Card> {
+	public class CardsAdapter extends ArrayAdapter<Card> {
 
-        /**
+        public Activity activity;
+
+		/**
          * @param demos An array containing the details of the demos to be displayed.
          */
         public CardsAdapter(Context context, List<Card> cards) {
@@ -83,11 +87,11 @@ public class PaymentOptionsFragment extends ListFragment implements OnClickListe
             	renderer = (CardRenderer) convertView;
             } else {
             	renderer = new CardRenderer(getContext());
+            	
             }
+            renderer.parentAdapter = this;
             Card card= getItem(position);
             renderer.setData(card);
-            
-
             return renderer;
         }
         

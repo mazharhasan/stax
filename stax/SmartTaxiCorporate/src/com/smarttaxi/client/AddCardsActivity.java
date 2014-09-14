@@ -20,6 +20,7 @@ import com.smart.taxi.entities.CustomHttpException;
 import com.smart.taxi.entities.CustomHttpResponse;
 import com.smart.taxi.fragments.BaseFragment;
 import com.smart.taxi.helpers.LoaderHelper;
+import com.smart.taxi.preferences.PreferencesHandler;
 import com.smart.taxi.utils.CommonUtilities;
 import com.smart.taxi.utils.CreditCardValidator;
 import com.smart.taxi.utils.Utils;
@@ -134,6 +135,7 @@ public class AddCardsActivity extends BaseActivity {
 				params.add(new BasicNameValuePair("card_ccv", newCard.getCardCCV()));
 				btnAddCard.setOnClickListener(null);
 				LoaderHelper.showLoader(getActivity(), "Validating card...", "");
+				CommonUtilities.hideSoftKeyboard(getActivity());
 				CustomHttpClass.runPostService(this, APIConstants.METHOD_POST_ADD_CARD, params, true, false);
 				Log.e("Validation", "valid card");
 			}
@@ -243,6 +245,7 @@ public class AddCardsActivity extends BaseActivity {
 							newCard.setCardToken(token);
 							newCard.setCardNumber(cardsJson.get("card_number").getAsString());
 							SplashActivity.loggedInUser.getUserCards().add(newCard);
+							new PreferencesHandler(getActivity()).setUserLoggedIn();
 							getActivity().setResult(CARD_RESULT_SUCCESS);
 							getActivity().finish();
 						}

@@ -42,6 +42,7 @@
     <dimen name="abc_action_button_min_width">56dip</dimen>
     <!-- Maximum height for a stacked tab bar as part of an action bar -->
     <dimen name="abc_action_bar_stacked_max_height">48dp</dimen>
+    <dimen name="fb_icon_padding">10dp</dimen>
 
     <dimen name="abc_panel_menu_list_width">296dp</dimen>
 

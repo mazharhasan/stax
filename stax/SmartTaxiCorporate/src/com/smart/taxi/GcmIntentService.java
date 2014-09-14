@@ -114,7 +114,7 @@ public class GcmIntentService extends IntentService {
     	int rid = r.nextInt(1800 - 650) + 650;
     	try{
     		Bundle extras = (Bundle) msg;
-        	String notifType = extras.getString("type");
+        	String notifType = (Utils.isEmptyOrNull(extras.getString("type")) && extras.getString("status").equals("1"))?"accept":extras.getString("type");
         	String journeyId = extras.getString("journey_id");
         	message = extras.getString("message");
 			

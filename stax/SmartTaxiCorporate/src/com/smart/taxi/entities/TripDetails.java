@@ -25,6 +25,7 @@ public class TripDetails {
 	private String status = "Pending...";
 	private boolean isCustomTrip = false;
 	private boolean isRequestedLater;
+	private String token;
 	
 	public TripDetails()
 	{
@@ -181,6 +182,14 @@ public class TripDetails {
 
 	public void setRequestedLater(boolean isRequestedLater) {
 		this.isRequestedLater = isRequestedLater;
+	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
 	}
 
 }

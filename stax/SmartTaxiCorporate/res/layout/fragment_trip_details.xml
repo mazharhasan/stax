@@ -36,29 +36,18 @@
 	    android:layout_alignParentBottom="true"
 	    android:layout_alignParentLeft="true"
 	    android:background="#99000000"
+	    android:layout_margin="10dp"
 	    android:orientation="horizontal" >
 
 	    <Button
 	        android:id="@+id/btnCancelTrip"
-	        android:layout_width="wrap_content"
+	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:layout_gravity="left|center_vertical"
-	        android:layout_margin="2dp"
 	        android:background="#5aff0000"
-	        android:paddingLeft="4dp"
-	        android:paddingRight="4dp"
-	        android:text="Cancel"
+	        android:text="Cancel trip request"
 	        android:textColor="#fff" />
 
-	    <com.smart.taxi.components.CFTextView
-	        android:id="@+id/txtDriverStatus"
-	        style="@style/WhiteLabel"
-	        android:layout_width="0dp"
-	        android:layout_height="wrap_content"
-	        android:layout_gravity="center_vertical"
-	        android:layout_weight="1"
-	        android:padding="10dp"
-	        android:textSize="16sp" />
 	</LinearLayout>
 
 </RelativeLayout>

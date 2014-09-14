@@ -25,7 +25,7 @@
         android:hint="Username"
         style="@style/FormTextInputStyle"
         android:inputType="textEmailAddress"
-        android:text="stax3@mailismagic.com"
+        android:text=""
         >
 
         <requestFocus />
@@ -40,7 +40,7 @@
         android:hint="Password"
         style="@style/FormTextInputStyle"
         android:inputType="textPassword"
-        android:text="qqqq"
+        android:text=""
         />
 
     <LinearLayout
