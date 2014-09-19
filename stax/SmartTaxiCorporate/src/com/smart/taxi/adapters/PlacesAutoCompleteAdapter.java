@@ -20,6 +20,8 @@ import android.widget.Filterable;
 
 public class PlacesAutoCompleteAdapter extends ArrayAdapter<String> implements Filterable {
     private ArrayList<String> resultList;
+
+	private HttpURLConnection conn = null;
     
     private static final String LOG_TAG = "Places Adapter";
 
@@ -49,19 +51,32 @@ public class PlacesAutoCompleteAdapter extends ArrayAdapter<String> implements F
             @Override
             protected FilterResults performFiltering(CharSequence constraint) {
                 FilterResults filterResults = new FilterResults();
+                ArrayList <String> resultListTemp = new ArrayList <String> ();
                 if (constraint != null && constraint.length() > 5) {
+                	
+                	if (conn != null)
+                    {
+                        conn.disconnect();
+                    }
+                	
                     // Retrieve the autocomplete results.
-                    resultList = autocomplete(constraint.toString());
+                    //resultList = autocomplete(constraint.toString());
+                	resultListTemp.addAll(autocomplete(constraint.toString()));
 
                     // Assign the data to the FilterResults
-                    filterResults.values = resultList;
-                    filterResults.count = resultList.size();
+                	resultList = resultListTemp;
+                    filterResults.values = resultListTemp;
+                    filterResults.count = resultListTemp.size();
                 }
                 return filterResults;
             }
 
-            @Override
+            @SuppressWarnings("unchecked")
+			@Override
             protected void publishResults(CharSequence constraint, FilterResults results) {
+            	
+            	resultList = (ArrayList<String>) results.values;
+            	
                 if (results != null && results.count > 0) {
                     notifyDataSetChanged();
                 }
@@ -73,9 +88,9 @@ public class PlacesAutoCompleteAdapter extends ArrayAdapter<String> implements F
     }
     
     private ArrayList<String> autocomplete(String input) {
-        ArrayList<String> resultList = null;
+        ArrayList<String> resultList = new ArrayList <String> ();
         
-        HttpURLConnection conn = null;
+        //HttpURLConnection conn = null;
         StringBuilder jsonResults = new StringBuilder();
         try {
             StringBuilder sb = new StringBuilder(PLACES_API_BASE + TYPE_AUTOCOMPLETE + OUT_JSON);
@@ -84,7 +99,7 @@ public class PlacesAutoCompleteAdapter extends ArrayAdapter<String> implements F
             sb.append("&input=" + URLEncoder.encode(input, "utf8"));
 
             URL url = new URL(sb.toString());
-            conn = (HttpURLConnection) url.openConnection();
+            conn  = (HttpURLConnection) url.openConnection();
             InputStreamReader in = new InputStreamReader(conn.getInputStream());
 
             // Load the results into a StringBuilder

@@ -34,6 +34,7 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -91,6 +92,7 @@ public class SplashActivity extends BaseActivity {
 	private static boolean isRestoring = false;
 	private Bundle bundle;
 	private Button btnRegister;
+	private Button btnForgotPassword;
 	private static boolean launched = false;
 	private static long launchTime = 0;
 	
@@ -167,8 +169,12 @@ public class SplashActivity extends BaseActivity {
 		tfPassword = (EditText) findViewById(R.id.login_password);
 		btnLogin = (Button) findViewById(R.id.btnLogin);
 		btnRegister = (Button) findViewById(R.id.btnRegister);
+		btnForgotPassword = (Button) findViewById(R.id.btnForgotPassword);
 		btnLogin.setOnClickListener(this);
 		btnRegister.setOnClickListener(this);
+		btnForgotPassword.setOnClickListener(this);
+		String htmlString="<u>Forgot password?</u>";
+		btnForgotPassword.setText(Html.fromHtml(htmlString));
 	}
 
 	
@@ -235,6 +241,10 @@ public class SplashActivity extends BaseActivity {
 		case R.id.btnRegister:
 			doRegister();
 			break;
+			
+		case R.id.btnForgotPassword:
+			doResetPassword();
+			break;
 
 		default:
 			break;
@@ -245,6 +255,14 @@ public class SplashActivity extends BaseActivity {
 	}
 
 	
+
+	private void doResetPassword() {
+		// TODO Auto-generated method stub
+		Intent fpActivity = new Intent(getApplicationContext(), ForgetPasswordActivity.class);
+		//signUpActivity.setFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT | Intent.FLAG_ACTIVITY_NEW_TASK);
+		startActivity(fpActivity);
+		overridePendingTransition(R.anim.slide_left, R.anim.slide_left);
+	}
 
 	private void doRegister() {
 		// TODO Auto-generated method stub

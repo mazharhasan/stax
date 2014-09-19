@@ -2,7 +2,9 @@ package com.smarttaxi.client;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import ch.boye.httpclientandroidlib.message.BasicNameValuePair;
+
 import com.google.android.gms.internal.ex;
 import com.smarttaxi.client.R;
 import com.smart.taxi.activities.BaseActivity;
@@ -17,10 +19,12 @@ import com.smart.taxi.helpers.LoaderHelper;
 import com.smart.taxi.interfaces.HttpResponseListener;
 import com.smart.taxi.utils.CommonUtilities;
 import com.smart.taxi.utils.NetworkAvailability;
+
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -99,48 +103,85 @@ public class VerifyAccountActivuty extends BaseActivity {
 		private void initUI() {
 			// TODO Auto-generated method stub
 			txtVerifyCode = (CFEditText) rootView.findViewById(R.id.txtVerifyAccountCode);
+			btnResendCode = (Button) rootView.findViewById(R.id.btnResendCode);
 			btnVerifyAccount = (Button) rootView.findViewById(R.id.btnVerifyAccount);
 			btnVerifyAccount.setOnClickListener(this);
+			btnResendCode.setOnClickListener(this);
+			String htmlString="<u>Click to resend verification code</u>";
+			btnResendCode.setText(Html.fromHtml(htmlString));
 			
 		}
 
 		@Override
 		public void onClick(View view) {
-			if(txtVerifyCode.getText().length() <= 0)
+			switch(view.getId())
 			{
-				txtVerifyCode.setError("Please enter the verification code.");
-				txtVerifyCode.requestFocus();
-				return;
+				case R.id.btnVerifyAccount:
+					if(txtVerifyCode.getText().length() <= 0)
+					{
+						txtVerifyCode.setError("Please enter the verification code.");
+						txtVerifyCode.requestFocus();
+						return;
+					}
+					if(NetworkAvailability.IsNetworkAvailable(getActivity().getBaseContext()))
+					{
+						txtVerifyCode.setError(null);
+						List<BasicNameValuePair> params = new ArrayList<BasicNameValuePair>();
+						params.add(new BasicNameValuePair("email", newEMail));
+						params.add(new BasicNameValuePair("verification_code", txtVerifyCode.getText().toString()));
+						LoaderHelper.showLoader(getActivity(), "Please wait while we are verifying your account...,","");
+						btnVerifyAccount.setOnClickListener(null);
+						CustomHttpClass.runPostService(this, APIConstants.METHOD_VERIFY_ACCOUNT, params, false, false);
+		
+					}else{
+						NetworkAvailability.showNoConnectionDialog(getActivity());
+					}
+				break;
+				
+				case R.id.btnResendCode:
+					if(NetworkAvailability.IsNetworkAvailable(getActivity().getBaseContext()))
+					{
+						List<BasicNameValuePair> params = new ArrayList<BasicNameValuePair>();
+						params.add(new BasicNameValuePair("email", newEMail));
+						LoaderHelper.showLoader(getActivity(), "Please wait while we resend your activation code to: " + newEMail + "...","");
+						
+						CustomHttpClass.runPostService(this, APIConstants.METHOD_POST_RESEND_CODE, params, false, false);
+		
+					}else{
+						NetworkAvailability.showNoConnectionDialog(getActivity());
+					}
+					break;
 			}
-			if(NetworkAvailability.IsNetworkAvailable(getActivity().getBaseContext()))
-			{
-				txtVerifyCode.setError(null);
-				List<BasicNameValuePair> params = new ArrayList<BasicNameValuePair>();
-				params.add(new BasicNameValuePair("email", newEMail));
-				params.add(new BasicNameValuePair("verification_code", txtVerifyCode.getText().toString()));
-				LoaderHelper.showLoader(getActivity(), "Please wait while we are verifying your account...,","");
-				btnVerifyAccount.setOnClickListener(null);
-				CustomHttpClass.runPostService(this, APIConstants.METHOD_VERIFY_ACCOUNT, params, false, false);
-
-			}else{
-				NetworkAvailability.showNoConnectionDialog(getActivity());
-			}
+				
 		}
 		
 		@Override
 		public void onResponse(CustomHttpResponse object) {
 			btnVerifyAccount.setOnClickListener(this);
 			LoaderHelper.hideLoaderSafe();
-			if(object.getStatusCode() == 2123)
+			if(object.getMethodName().equals(APIConstants.METHOD_VERIFY_ACCOUNT))
 			{
-				CommonUtilities.displayAlert(getActivity(), "Invalid verification code", "", "Change code", "", false);
-			}else if(object.getStatusCode() == 0 
-					|| 
-					//if already activated
-					object.getStatusCode() == 2122){
-				SplashActivity.doPrepareForLogin(newEMail, newPassword);
-				getActivity().finish();
+				if(object.getStatusCode() == 2123)
+				{
+					CommonUtilities.displayAlert(getActivity(), "Invalid verification code", "", "Change code", "", false);
+				}else if(object.getStatusCode() == 0 
+						|| 
+						//if already activated
+						object.getStatusCode() == 2122){
+					SplashActivity.doPrepareForLogin(newEMail, newPassword);
+					getActivity().finish();
+				}
+			}else if(object.getMethodName().equals(APIConstants.METHOD_POST_RESEND_CODE))
+			{
+				if(object.getStatusCode() == 0)
+				{
+					CommonUtilities.displayAlert(getActivity(), "Please check your email address: " + newEMail + " for the verification code we just sent.", "Verification code sent", "Ok", "", false);
+				}else{
+					CommonUtilities.displayAlert(getActivity(), "Please try again later.", "Error occured", "Ok", "", false);
+					
+				}
 			}
+				
 		}
 		
 		@Override

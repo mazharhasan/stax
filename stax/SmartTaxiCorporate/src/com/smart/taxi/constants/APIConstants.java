@@ -30,11 +30,12 @@ public final class APIConstants {
 	public static final String METHOD_POST_TRIP_HISTORY = "get_past_journeys.json";
 	public static final String METHOD_POST_UPDATE_TIP = "set_tip.json";
 	public static final String METHOD_POST_VERIFY_ACCOUNT = "verify_account.json";
-	public static final String METHOD_POST_RESEND_CODE = "resend_verify_account.json";
 	public static final String METHOD_POST_REGISTER_USER = "verify_signup.json";
 	public static final String METHOD_POST_ADD_CARD = "add_card.json";
 	public static final String METHOD_POST_LOAD_CUSTOMER_CABS = "get_cabs_around_me.json";
 	public static final String METHOD_POST_DELETE_CARD = "delete_card.json";
+	public static final String METHOD_POST_FORGOT_PASSWORD = "forgot_password.json";
+	public static final String METHOD_POST_RESEND_CODE = "resend_verify_account.json";
 	
 	
 	

@@ -22,7 +22,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:hint="Username"
+        android:hint="@string/hint_username"
         style="@style/FormTextInputStyle"
         android:inputType="textEmailAddress"
         android:text=""
@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:ems="10"
-        android:hint="Password"
+        android:hint="@string/hint_password"
         style="@style/FormTextInputStyle"
         android:inputType="textPassword"
         android:text=""
@@ -52,7 +52,7 @@
 	        android:layout_height="wrap_content"
 	        android:layout_marginTop="16dp"
 	        android:background="#4d4d4d"
-	        android:text="Register"
+	        android:text="@string/btn_register"
 	        android:layout_weight="1"
 	        android:textColor="#ffffff" />
 
@@ -68,8 +68,15 @@
         android:layout_weight="1"
         android:layout_marginTop="16dp"
         android:background="#4d4d4d"
-        android:text="Login"
+        android:text="@string/btn_login"
         android:textColor="#ffffff" />
     </LinearLayout>
+
+    <Button
+        android:id="@+id/btnForgotPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#00000000"
+        android:textColor="#111"/>
 
 </LinearLayout>

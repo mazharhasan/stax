@@ -8,8 +8,8 @@
     <string name="title_activity_home">HomeActivity</string>
     <string name="title_activity_splash">Smart Taxi</string>
     <string name="title_activity_forget_password">Smart Taxi > Forget password</string>
-    <string name="label_forget_password_header">Lost your password?</string>
-    <string name="label_forget_password_body_text">Enter your registered email address and we will send you password recovery instructions.</string>
+    <string name="label_forget_password_header">Forgot your password?</string>
+    <string name="label_forget_password_body_text">Enter your registered email address and we will send you your password recovery instructions.</string>
     <string name="button_recover_password">Send instructions</string>
     <string name="button_update_profile">Save profile</string>
     <string name="button_update_tip">Update tip</string>
@@ -124,7 +124,7 @@
     <string name="hint_phone_number">Phone number...</string>
     <string name="button_login_using_facrbook">Login using Facebook</string>
     <string name="title_activity_verify_account_activuty">Verify Account</string>
-    <string name="label_verify_account_desc">You must have received a verification code on the email address you provided at the time of registration. Please enter that code in the field below to verify your account.</string>
+    <string name="label_verify_account_desc">You will receive a verification code on the email address you registered with. Please enter that code in the field below to verify your account.</string>
     <string name="button_verify_account">Verify account</string>
     <string name="title_activity_list_cards">Payment options</string>
     <string name="title_activity_add_cards">Add a card</string>
@@ -145,5 +145,9 @@
     <string name="label_payment_details">PAYMENT DETAILS</string>
     <string name="btn_confirm_booking">CONFIRM BOOKING</string>
     <string name="label_promo_code">Promo code...</string>
+    <string name="btn_forget_password">Forget password?</string>
+    <string name="btn_login">Login</string>
+    <string name="btn_register">Register</string>
+    <string name="hint_username">Email address...</string>
 
 </resources>

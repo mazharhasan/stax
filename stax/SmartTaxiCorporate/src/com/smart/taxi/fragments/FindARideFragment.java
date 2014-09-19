@@ -50,6 +50,7 @@ import ch.boye.httpclientandroidlib.client.methods.HttpGet;
 import ch.boye.httpclientandroidlib.impl.client.DefaultHttpClient;
 import ch.boye.httpclientandroidlib.message.BasicNameValuePair;
 
+import com.google.android.gms.internal.dl;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -132,6 +133,7 @@ public class FindARideFragment extends BaseFragment implements
 	private ImageButton imgBtnSearchIcon;
 	private TripDetails defaultTripDetails;
 	private AutoCompleteTextView autoCompView;
+	private Location lastLocation;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -228,6 +230,7 @@ public class FindARideFragment extends BaseFragment implements
 		    autoCompView.setOnItemClickListener(this);
 		    autoCompView.setHint("");
 		    autoCompView.setText("");
+		    
 		    //tfAddress = (CFTextView)rootView.findViewById(R.id.txtAddressFindRide);
 		    //tfAddress.setVisibility(View.GONE);
 		} catch (Exception e) {
@@ -354,6 +357,7 @@ public class FindARideFragment extends BaseFragment implements
 			{
 				if(NetworkAvailability.IsNetworkAvailable(getActivity()))
 				{
+					autoCompView.setFocusable(false);
 					if(isCustomAddress)
 					{
 						requestPosition = currentLatLng;
@@ -417,8 +421,9 @@ public class FindARideFragment extends BaseFragment implements
 	public void resetScreen() {
 		FindARideFragment.isShowingMarkers = false;
 		cabLatLng = null;
-		resetMarkers();
 		autoCompView.setText("");
+		autoCompView.setFocusable(true);
+		resetMarkers();
 		setDefaultTripDetails(new TripDetails());
 		SplashActivity.isTripRequested = false;
 		SplashActivity.setTripNewDetails(null);
@@ -765,6 +770,7 @@ public class FindARideFragment extends BaseFragment implements
 		currentLatLng = point;
 		//tfAddress.setText("Loading address...");
 		autoCompView.setHint("Loading address...");
+		autoCompView.clearFocus();
 		placeUserLocationMarker(15, point);
 	}
 	
@@ -876,11 +882,14 @@ public class FindARideFragment extends BaseFragment implements
 				//tfAddress.setText(address);
 				if(autoCompView != null)
 				{
-					//autoCompView.setText("");
-					autoCompView.setText(address);
+					if(autoCompView.getText().length() > 0)
+					{
+						autoCompView.setText("");
+					}
+					autoCompView.setHint(address);
 				}
 			}else{
-				autoCompView.setText("");
+				//autoCompView.setText("");
 				autoCompView.setHint("Type address...");
 			}
 			/*else
@@ -891,13 +900,29 @@ public class FindARideFragment extends BaseFragment implements
 
 	@Override
 	public void onMyLocationChange(Location location) {
+		//Log.e("Speed", Double.valueOf(location.getSpeed()).toString());
+		//Log.e("Time", Double.valueOf(location.getTime()).toString());
+		
 		if(LoaderHelper.isLoaderShowing())
 		{
 			LoaderHelper.hideLoaderSafe();
 		}
+		if(lastLocation != null)
+		{
+			double dLat = Math.abs(lastLocation.getLatitude()-location.getLatitude());
+			double dLng = Math.abs(lastLocation.getLongitude()-location.getLongitude());
+			//Log.e(Double.valueOf(dLat).toString(), Double.valueOf(dLng).toString());
+			if(dLat < 0.001 && dLng < 0.001)
+			{
+				//Log.e("Returning","namurad");
+				return;
+			}
+		}else{
+			lastLocation = location;
+		}
 		if(btnPickUp.isEnabled() && !isCustomAddress)
 		{
-			Log.e("Location changed", location.toString());
+			//Log.e("Location changed", location.toString());
 			currentLatLng = new LatLng(location.getLatitude(), location.getLongitude());
 			placeUserLocationMarker(15, currentLatLng);
 		}
@@ -1092,6 +1117,7 @@ public class FindARideFragment extends BaseFragment implements
 	@Override
 	public void onItemClick(AdapterView<?> adapterView, View arg1, int position, long id) {
 		String str = (String) adapterView.getItemAtPosition(position);
+		autoCompView.clearFocus();
 		try {
 			reverseLookUp(str);
 		} catch (ClientProtocolException e) {

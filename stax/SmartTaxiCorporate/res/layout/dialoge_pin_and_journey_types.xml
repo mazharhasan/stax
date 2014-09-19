@@ -20,7 +20,7 @@
     <com.smart.taxi.components.CFEditText 
         android:id="@+id/txtPin"
         android:singleLine="true"
-        android:inputType="numberSigned"
+        android:inputType="textPassword|textWebPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/FormTextInputStyleInvert"
